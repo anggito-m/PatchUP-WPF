@@ -9,12 +9,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icon\book.png" />
+    <None Remove="icon\chatbot.png" />
+    <None Remove="icon\chatbot_menu.png" />
+    <None Remove="icon\community.png" />
+    <None Remove="icon\help.png" />
+    <None Remove="icon\home.png" />
+    <None Remove="icon\light.png" />
+    <None Remove="icon\logout.png" />
+    <None Remove="icon\playlist.png" />
+    <None Remove="icon\profile.png" />
+    <None Remove="icon\saved_post.png" />
+    <None Remove="icon\settings.png" />
+    <None Remove="icon\tutorial.png" />
     <None Remove="img\BottomVector.png" />
     <None Remove="img\UpperVector.png" />
     <None Remove="img\Welcome.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="icon\book.png" />
+    <Resource Include="icon\chatbot.png" />
+    <Resource Include="icon\chatbot_menu.png" />
+    <Resource Include="icon\community.png" />
+    <Resource Include="icon\help.png" />
+    <Resource Include="icon\home.png" />
+    <Resource Include="icon\light.png" />
+    <Resource Include="icon\logout.png" />
+    <Resource Include="icon\playlist.png" />
+    <Resource Include="icon\profile.png" />
+    <Resource Include="icon\saved_post.png" />
+    <Resource Include="icon\settings.png" />
+    <Resource Include="icon\tutorial.png" />
     <Resource Include="img\BottomVector.png" />
     <Resource Include="img\UpperVector.png" />
     <Resource Include="img\Welcome.jpg">

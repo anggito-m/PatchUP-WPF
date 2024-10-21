@@ -70,5 +70,10 @@ namespace WpfApp1
         {
 
         }
+
+        private void Remember_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
