@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="img\BottomVector.png" />
+    <None Remove="img\UpperVector.png" />
+    <None Remove="img\Welcome.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\BottomVector.png" />
+    <Resource Include="img\UpperVector.png" />
+    <Resource Include="img\Welcome.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

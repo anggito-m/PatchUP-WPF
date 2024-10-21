@@ -1,0 +1,70 @@
+﻿<Page x:Class="WpfApp1.Welcome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Welcome" Height="450" Width="800"
+      >
+
+    <Grid Background="#FFFFFF">
+
+        <Image Source="img\BottomVector.png"
+               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+               Width="313" Height="209" Margin="532,0,0,0"/>
+
+        <Image Source="img\UpperVector.png"
+               HorizontalAlignment="Right" VerticalAlignment="Top"
+               Width="217" Height="171"/>
+        <Grid Margin="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Stretch="Uniform" 
+   Source="img\Welcome.jpg"
+   HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock Text="Welcome to" 
+                           FontSize="24" 
+                           FontWeight="SemiBold" 
+                           Foreground="Black"
+                           Margin="0,0,0,5" />
+                <TextBlock Text="PatchUP" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="Black"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam commodo feugiat ligula, eu efficitur dolor accumsan eu. Sed luctus vestibulum velit nec fringilla."
+                           FontSize="14" 
+                           TextWrapping="Wrap" 
+                           Foreground="Gray" 
+                           Width="300"
+                           Margin="0,0,0,30" />
+
+                <Button Content="Let Start" 
+                        Width="120" 
+                        Height="40"
+                        Background="#5469D4" 
+                        Foreground="White" 
+                        FontSize="16"
+                        HorizontalAlignment="Left" 
+                        BorderBrush="{x:Null}" Click="Button_Click"
+                        >
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="20" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Page>
