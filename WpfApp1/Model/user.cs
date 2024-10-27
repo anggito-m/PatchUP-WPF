@@ -31,7 +31,6 @@ namespace WpfApp1.Model
             Password = password;
         }
         string connectionString = Environment.GetEnvironmentVariable("connectionString");
-        //string connectionString = "Server = junpro2024.postgres.database.azure.com; Username=adminsholeh;Database=patchup;Port=5432;Password=Usecasediagram123;SSLMode=Prefer";
         string userID = File.ReadAllText(@"jwt.json");
         
         public void getUser(string username, string inputPassword)
