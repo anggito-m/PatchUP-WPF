@@ -35,15 +35,13 @@ namespace WpfApp1
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            File.WriteAllText(@"jwt.json", string.Empty);
-            user userLogin = new user();
             string username = UsernameTextBox.Text;
             string password = PasswordTextBox.Password.ToString();
             if (!string.IsNullOrEmpty(username) && username.Length > 0)
             {
                 if (!string.IsNullOrEmpty(password) && password.Length > 0)
                 {
-                  userLogin.getUser(username, password);
+                  user.Instance.Login(username, password);
                     /*if (user.IsValidUser(txtEmail.Text, txtPassword.Password.ToString()))
                     {
                         MainWindow main = new MainWindow();

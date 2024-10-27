@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Model;
 
 namespace WpfApp1
 {
@@ -20,6 +21,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Register : Page
     {
+        
         public Register()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace WpfApp1
             }
             else
             {
-                MessageBox.Show("Register Berhasil");
+                user.Instance.Register(UsernameTextBox.Text, EmailTextBox.Text, NameTextBox.Text, PasswordTextBox.Password);
             }
         }
 
