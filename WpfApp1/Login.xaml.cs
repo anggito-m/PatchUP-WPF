@@ -41,17 +41,25 @@ namespace WpfApp1
             {
                 if (!string.IsNullOrEmpty(password) && password.Length > 0)
                 {
-                  user.Instance.Login(username, password);
-                    /*if (user.IsValidUser(txtEmail.Text, txtPassword.Password.ToString()))
+                    int result = user.Instance.Login(username, password);
+                    if (result == 1)
                     {
-                        MainWindow main = new MainWindow();
+                        MessageBox.Show("Login Berhasil");
+                        // close this window
+                        //open home window
+                        Home main = new Home();
                         main.Show();
-                        this.Close();
+                        Window.GetWindow(this).Close();
                     }
-                    else
+                    else if (result == 0)
                     {
-                        MessageBox.Show("Email or Password is incorrect");
-                    }*/
+                        MessageBox.Show("Password salah");
+                    }
+                    else if (result == -1)
+                    {
+                        MessageBox.Show("Username tidak ditemukan");
+                    }
+                    
                 }
                 else
                 {

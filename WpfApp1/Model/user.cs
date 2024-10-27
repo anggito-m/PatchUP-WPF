@@ -30,16 +30,15 @@ namespace WpfApp1.Model
             Name = name;
             Password = password;
         }
-        //string connectionString = Environment.GetEnvironmentVariable("connectionString");
-        string connectionString = "Server = junpro2024.postgres.database.azure.com; Username=adminsholeh;Database=patchup;Port=5432;Password=Usecasediagram123;SSLMode=Prefer";
+        string connectionString = Environment.GetEnvironmentVariable("connectionString");
         
-        public void Login(string username, string inputPassword)
+        public int Login(string username, string inputPassword)
         {
             string query = "SELECT * FROM \"user\" WHERE \"username\" = @username";
-            try { 
-                using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
                 {
-
                     NpgsqlCommand command = new NpgsqlCommand(query, connection);
                     command.Parameters.AddWithValue("@username", username);
                     connection.Open();
@@ -47,29 +46,35 @@ namespace WpfApp1.Model
                     if (reader.HasRows)
                     {
                         reader.Read(); // Baca baris pertama (harusnya hanya satu baris)
-                        string realPassword = reader["password"].ToString();
+                        string realPassword = System.Text.Encoding.UTF8.GetString((byte[])reader["password"]);
+
 
                         // Sesuaikan dengan metode keamanan yang sesuai (contoh sederhana)
                         if (inputPassword == realPassword)
                         {
-                            MessageBox.Show("Login Berhasil");
-                            user.Instance.SetUser(reader["username"].ToString(), reader["email"].ToString(), reader["name"].ToString(), reader["password"].ToString()); 
+                            user.Instance.SetUser(reader["username"].ToString(), reader["email"].ToString(), reader["name"].ToString(), reader["password"].ToString());
+                            return 1; // Login berhasil
                         }
-                        else 
+                        else
                         {
-                            MessageBox.Show("Password salah");
+                            return 0; // Password salah
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Username Tidak Ditemukan"); // Username tidak ditemukan
+                        return -1; // Username tidak ditemukan
                     }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return -2;
+                }
+                finally
+                {
                     connection.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
         public void Register(string username, string email, string name, string password)
