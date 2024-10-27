@@ -22,6 +22,8 @@ namespace WpfApp1
         public Home()
         {
             InitializeComponent();
+            UsernameBinding.Text = Model.user.Instance.Name;
+            ProfileName.Text = Model.user.Instance.Name;
         }
     }
 }
