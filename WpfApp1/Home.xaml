@@ -5,108 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Home" Height="450" Width="800">
+        Title="Home" Height="800" Width="1200">
     <Grid>
         <!-- Main Layout -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="175"/>
+            <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Sidebar -->
-        <Border Grid.Column="0" Background="#002E84" CornerRadius="0,30,30,0" ClipToBounds="True">
-            <StackPanel Background="#002E84" Grid.Column="0">
-                <!-- Logo Section -->
-                <Button Background="Transparent" BorderBrush="Transparent" Margin="0, 10, 0, 10" Foreground="White" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="PatchUP" VerticalAlignment="Center" FontSize="14" FontFamily="Mulish"/>
+        <Border Background="#00029F" Width="250" CornerRadius="0,40,40,0">
+            <DockPanel LastChildFill="True">
+                <!-- Main Menu Content -->
+                <StackPanel DockPanel.Dock="Top" Margin="10">
+                    <!-- Tulisan PatchUP -->
+                    <TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0, 10, 0, 15">
+                        <Run Text="Patch"/>
+                        <Run Text="UP" Foreground="#00EDFA"/>
+                    </TextBlock>
+
+                    <Separator Background="Gray"/>
+
+                    <!-- Profile Section -->
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,10" HorizontalAlignment="Left">
+                        <Ellipse Width="60" Height="60" Fill="Gray" Margin="10,0,10,0"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Robert Fox" Foreground="White" FontWeight="Bold" Margin="0, 0, 0, 5"/>
+                            <TextBlock Text="View Profile" Foreground="White" FontSize="12"/>
+                            <Border BorderBrush="White" BorderThickness="0,0,0,0.5" Width="Auto"/>
+                        </StackPanel>
                     </StackPanel>
-                </Button>
 
-                <Separator Background="White" Margin="10,0" Height="2"/>
+                    <!-- Menu Section -->
+                    <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
+                    <StackPanel>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Saved Post" Tag="/icon/saved_post.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Tutorial" Tag="/icon/tutorial.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Community" Tag="/icon/community.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Chatbot" Tag="/icon/chatbot_menu.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Playlist" Tag="/icon/playlist.png"/>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="10, 0, 0, 0">
-                    <Ellipse Width="50" Height="50" Margin="0,10,10,10">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="/icon/profile.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Robert Fox" Foreground="White" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="View Profile" Foreground="White" FontSize="12"/>
+                    <Separator Margin="0,20,0,30" Background="Gray"/>
+                    <TextBlock Text="GENERAL" Foreground="#EAEAEF" Margin="10,0,0,5" Opacity="0.85" FontWeight="SemiBold"/>
+
+                    <StackPanel>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="SettingsIcon"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Help" Tag="HelpIcon"/>
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Menu Items with Icons -->
-                <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/icon/home.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                        <TextBlock Text="Home" VerticalAlignment="Center" FontSize="14"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/icon/saved_post.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                        <TextBlock Text="Saved Post" VerticalAlignment="Center" FontSize="14"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/icon/tutorial.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                        <TextBlock Text="Tutorial" VerticalAlignment="Center" FontSize="14"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/icon/community.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                        <TextBlock Text="Community" VerticalAlignment="Center" FontSize="14"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/icon/chatbot.png" Width="20" Height="20" Margin="0, 0, 10, 0" />
-                        <TextBlock Text="Chatbot" VerticalAlignment="Center" FontSize="14"/>
-                    </StackPanel>
-                </Button>
-
-                <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <Image Source="/icon/playlist.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                        <TextBlock Text="Playlist" VerticalAlignment="Center" FontSize="14"/>
-                    </StackPanel>
-                </Button>
-
-                <Separator Background="White" Margin="10,5" Height="2"/>
-
-                <!-- General Section -->
-                <StackPanel VerticalAlignment="Bottom">
-                    <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Image Source="/icon/settings.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                            <TextBlock Text="Settings" VerticalAlignment="Center" FontSize="14"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Image Source="/icon/help.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                            <TextBlock Text="Help" VerticalAlignment="Center" FontSize="14"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-
-                <StackPanel VerticalAlignment="Bottom" Margin="0, 10, 0, 0">
-                    <Button Background="Transparent" BorderBrush="Transparent" Padding="10,5" Foreground="White" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Image Source="/icon/logout.png" Width="20" Height="20" Margin="0,0,10,0"/>
-                            <TextBlock Text="Logout" VerticalAlignment="Center" FontSize="14"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
+                <!-- Logout Button at the Bottom -->
+                <Button Style="{StaticResource SidebarButtonStyle}" Content="Logout" Tag="LogoutIcon" DockPanel.Dock="Bottom" Margin="15, 0, 0, 0"/>
+            </DockPanel>
         </Border>
 
         <!-- Main Content Area -->
