@@ -1,24 +1,28 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
-using WpfApp1.Model;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace WpfApp1
 {
+    /// <summary>
+    /// Interaction logic for Tutorial.xaml
+    /// </summary>
     public partial class Tutorial : Page
     {
-        public ObservableCollection<CardModel> Cards { get; set; }
-
         public Tutorial()
         {
             InitializeComponent();
-
-            Cards = new ObservableCollection<CardModel>
-            {
-                new CardModel { Title = "Tutorial", Description = "Simplify your decisions through our Smart Menu Assistant who will help you.", ImageSource = "/icon/book.png" },
-                // Tambahkan kartu lainnya sesuai kebutuhan
-            };
-
-            DataContext = this;
         }
     }
 }

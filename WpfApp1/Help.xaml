@@ -5,10 +5,175 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1200"
       Title="Help">
 
-    <Grid>
-        
+    <Grid Background="#FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#00029F" Width="250" CornerRadius="0,40,40,0">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Top" Margin="10">
+                    <TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0, 10, 0, 15">
+                <Run Text="Patch"/>
+                <Run Text="UP" Foreground="#00EDFA"/>
+                    </TextBlock>
+
+                    <Separator Background="Gray" Height="5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20" HorizontalAlignment="Left">
+                        <Image Source="/icon/profile.png" Width="60" Height="60" Margin="10,0,10,0">
+                            <Image.Clip>
+                                <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30"/>
+                            </Image.Clip>
+                        </Image>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Robert Fox" Foreground="White" FontWeight="Bold" Margin="0, 0, 0, 5"/>
+                            <TextBlock Text="View Profile" Foreground="White" FontSize="12"/>
+                            <Border BorderBrush="White" BorderThickness="0,0,0,0.5" Width="Auto"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
+                    <StackPanel>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Saved Post" Tag="/icon/saved_post.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Tutorial" Tag="/icon/tutorial.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Community" Tag="/icon/community.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Chatbot" Tag="/icon/chatbot_menu.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Playlist" Tag="/icon/playlist.png"/>
+                    </StackPanel>
+
+                    <Separator Margin="0,20,0,30" Background="Gray" Height="5"/>
+
+                    <TextBlock Text="GENERAL" Foreground="#EAEAEF" Margin="10,0,0,5" Opacity="0.85" FontWeight="SemiBold"/>
+                    <StackPanel>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="SettingsIcon"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Help" Tag="HelpIcon"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Button Style="{StaticResource SidebarButtonStyle}" Content="Logout" Tag="LogoutIcon" DockPanel.Dock="Bottom" Margin="15, 0, 0, 0"/>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="20">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="White" Width="750" Height="50" CornerRadius="20" BorderBrush="#D6D6D6" BorderThickness="1" Padding="10">
+                        <Grid>
+                            <TextBox x:Name="SearchTextBox" 
+                             Width="700"
+                             Height="Auto"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Foreground="#A3A3A3"
+                             FontSize="14"
+                             Text="Search"
+                             VerticalAlignment="Center" 
+                         />
+                            <Image Source="/icon/search.png"
+                           Width="20"
+                           Height="20"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"
+                         />
+                        </Grid>
+                    </Border>
+
+                    <Button Width="135" Height="50" Background="#00029F" Foreground="White" FontSize="14" FontWeight="Bold" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" BorderThickness="0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Source="/icon/filter.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                                        <TextBlock Text="Filters" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Width="910">
+                    <TextBlock Text="Frequently Asked Questions" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       Margin="0, 20, 0, 30"
+                     />
+                    <Expander Header="What is UX design?" 
+                       Background="#F9F6F2" 
+                       FontWeight="Bold" 
+                       FontSize="16" 
+                       Padding="10"
+                       Margin="0, 0, 0, 10"
+                       HorizontalContentAlignment="Stretch">
+                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
+                            <TextBlock Text="UX design stands for User Experience design. It is the process of designing digital or physical products that are easy to use, intuitive, and enjoyable for the user."
+                               FontSize="14" 
+                               FontWeight="Normal" 
+                               Foreground="#444444"
+                               TextWrapping="Wrap"
+                             />
+                         </StackPanel>
+                    </Expander>
+                    <Expander Header="What are the key principles of UX design?" 
+                       Background="#F9F6F2" 
+                       FontWeight="Bold" 
+                       FontSize="16" 
+                       Padding="10"
+                       Margin="0, 0, 0, 10"
+                       HorizontalContentAlignment="Stretch">
+                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
+                            <TextBlock Text="Some key principles of UX design include usability, accessibility, and consistency."
+                                FontSize="14" 
+                                FontWeight="Normal" 
+                                Foreground="#444444"
+                                TextWrapping="Wrap"
+                            />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="What is the difference between UX and UI design?" 
+                       Background="#F9F6F2" 
+                       FontWeight="Bold" 
+                       FontSize="16" 
+                       Padding="10"
+                       Margin="0, 0, 0, 10"
+                       HorizontalContentAlignment="Stretch">
+                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
+                            <TextBlock Text="UX design focuses on the overall experience of the user, while UI design focuses on the look and feel of the product."
+                                FontSize="14" 
+                                FontWeight="Normal" 
+                                Foreground="#444444"
+                                TextWrapping="Wrap"
+                             />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="What is a wireframe?" 
+                       Background="#F9F6F2" 
+                       FontWeight="Bold" 
+                       FontSize="16" 
+                       Padding="10"
+                       Margin="0, 0, 0, 10"
+                       HorizontalContentAlignment="Stretch">
+                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
+                            <TextBlock Text="A wireframe is a visual guide that represents the skeletal framework of a website or application."
+                                FontSize="14" 
+                                FontWeight="Normal" 
+                                Foreground="#444444"
+                                TextWrapping="Wrap"
+                            />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
