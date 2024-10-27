@@ -8,10 +8,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <StackPanel Orientation="Horizontal" Margin="5">
-                        <Border Width="30" Height="30" CornerRadius="15" Background="White" Opacity="0.15" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Border Width="30" Height="30" CornerRadius="10" Background="White" Opacity="0.15" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Image Source="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        <TextBlock Text="{TemplateBinding Content}" FontSize="14" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock Text="{TemplateBinding Content}" FontSize="14" FontWeight="Light" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

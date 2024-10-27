@@ -7,28 +7,28 @@
         mc:Ignorable="d"
         Title="Home" Height="800" Width="1200">
     <Grid>
-        <!-- Main Layout -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Sidebar -->
         <Border Background="#00029F" Width="250" CornerRadius="0,40,40,0">
             <DockPanel LastChildFill="True">
-                <!-- Main Menu Content -->
                 <StackPanel DockPanel.Dock="Top" Margin="10">
-                    <!-- Tulisan PatchUP -->
                     <TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0, 10, 0, 15">
                         <Run Text="Patch"/>
                         <Run Text="UP" Foreground="#00EDFA"/>
                     </TextBlock>
 
-                    <Separator Background="Gray"/>
+                    <Separator Background="Gray" Height="5"/>
 
-                    <!-- Profile Section -->
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,10" HorizontalAlignment="Left">
-                        <Ellipse Width="60" Height="60" Fill="Gray" Margin="10,0,10,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20" HorizontalAlignment="Left">
+                        <Image Source="/icon/profile.png" Width="60" Height="60" Margin="10,0,10,0">
+                            <Image.Clip>
+                                <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30"/>
+                            </Image.Clip>
+                        </Image>
+
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Text="Robert Fox" Foreground="White" FontWeight="Bold" Margin="0, 0, 0, 5"/>
                             <TextBlock Text="View Profile" Foreground="White" FontSize="12"/>
@@ -36,7 +36,6 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <!-- Menu Section -->
                     <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
                     <StackPanel>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png"/>
@@ -47,56 +46,81 @@
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Playlist" Tag="/icon/playlist.png"/>
                     </StackPanel>
 
-                    <Separator Margin="0,20,0,30" Background="Gray"/>
+                    <Separator Margin="0,20,0,30" Background="Gray" Height="5"/>
+                    
                     <TextBlock Text="GENERAL" Foreground="#EAEAEF" Margin="10,0,0,5" Opacity="0.85" FontWeight="SemiBold"/>
-
                     <StackPanel>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="SettingsIcon"/>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Help" Tag="HelpIcon"/>
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Logout Button at the Bottom -->
                 <Button Style="{StaticResource SidebarButtonStyle}" Content="Logout" Tag="LogoutIcon" DockPanel.Dock="Bottom" Margin="15, 0, 0, 0"/>
             </DockPanel>
         </Border>
 
-        <!-- Main Content Area -->
-        <Grid Grid.Column="1" Margin="20">
-            <!-- Welcome Section -->
-            <StackPanel Margin="0,10,0,0">
-                <Border Width="575" Height="100" Background="#4143E3" CornerRadius="30">
-                    
-                </Border>
-                <Grid Margin="0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Margin="20, 75">
+            <StackPanel>
+                <Border Width="900" Height="225" Background="#4143E3" CornerRadius="30" Padding="20, 0, 20, 0" ClipToBounds="True">
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0">
+                            <TextBlock Text="Welcome to PatchUP," FontSize="24" Foreground="White" />
+                            <TextBlock Text="Username" FontSize="28" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
+                        </StackPanel>
 
-                    <!-- Cards -->
-                    <Border Grid.Column="0" Background="#EEEEEE" CornerRadius="10" Padding="10" Margin="10">
-                        <StackPanel>
-                            <Image Source="/icon/light.png" Width="40" Height="40" HorizontalAlignment="Left" Margin="-5, 0, 0, 5"/>
-                            <TextBlock Text="Tutorial" FontSize="18" FontWeight="Bold" Foreground="#F1C40F"/>
-                            <TextBlock Text="Simplify your decisions through our Smart Menu Assistant who will help you." TextWrapping="Wrap" FontSize="12" Foreground="#7D7D7D" Margin="0,10,0,0"/>
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Column="1" Background="#EEEEEE" CornerRadius="10" Padding="10" Margin="10">
-                        <StackPanel>
-                            <Image Source="/icon/book.png" Width="40" Height="40" HorizontalAlignment="Left" Margin="-5, 0, 0, 5"/>
-                            <TextBlock Text="Community" FontSize="18" FontWeight="Bold" Foreground="#2ECC71"/>
-                            <TextBlock Text="Connect with others and share experiences through our community." TextWrapping="Wrap" FontSize="12" Foreground="#7D7D7D" Margin="0,10,0,0"/>
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Column="2" Background="#EEEEEE" CornerRadius="10" Padding="10" Margin="10">
-                        <StackPanel>
-                            <Image Source="/icon/chatbot_menu.png" Width="40" Height="40" HorizontalAlignment="Left" Margin="-5, 0, 0, 5"/>
-                            <TextBlock Text="Chatbot" FontSize="18" FontWeight="Bold" Foreground="#3498DB"/>
-                            <TextBlock Text="If you already know what to order, this is the best choice." TextWrapping="Wrap" FontSize="12" Foreground="#7D7D7D" Margin="0,10,0,0"/>
-                        </StackPanel>
-                    </Border>
+                        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Width="300" Height="300">
+                            <Ellipse Width="300" Height="300">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="#5F5FEF" Offset="0.4"/>
+                                        <GradientStop Color="#4143E3" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse Width="150" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/icon/user_image.png" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 20, 0, 0">
+                        <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0,0,20,0">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Tutorial" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
+                                <TextBlock Text="Simplify your decisions through our Smart Menu Assistant who will help you."
+                               FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0,0,20,0">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Community" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
+                                <TextBlock Text="Simplify your decisions through our Smart Menu Assistant who will help you."
+                               FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
+                            </Border.Effect>
+                            <StackPanel Margin="15">
+                                <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Chatbot" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
+                                <TextBlock Text="If you already know what to order, this is the best choice."
+                               FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
                 </Grid>
             </StackPanel>
         </Grid>
