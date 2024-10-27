@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Model;
+using static WpfApp1.Model.user;
+using System.IO;
 
 namespace WpfApp1
 {
@@ -32,22 +35,34 @@ namespace WpfApp1
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            String[] User = {"Dani", "Adji", "Anggito" };
-            if (UsernameTextBox.Text == string.Empty || PasswordTextBox.Password == string.Empty)
+            File.WriteAllText(@"jwt.json", string.Empty);
+            user userLogin = new user();
+            string username = UsernameTextBox.Text;
+            string password = PasswordTextBox.Password.ToString();
+            if (!string.IsNullOrEmpty(username) && username.Length > 0)
             {
-                MessageBox.Show("Please fill all the fields");
-            }
-            else if (!User.Contains(UsernameTextBox.Text))
-            {
-                MessageBox.Show("Username is not registered");
-            }
-            else if(PasswordTextBox.Password != "123")
-            {
-                MessageBox.Show("Password is incorrect");
+                if (!string.IsNullOrEmpty(password) && password.Length > 0)
+                {
+                  userLogin.getUser(username, password);
+                    /*if (user.IsValidUser(txtEmail.Text, txtPassword.Password.ToString()))
+                    {
+                        MainWindow main = new MainWindow();
+                        main.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email or Password is incorrect");
+                    }*/
+                }
+                else
+                {
+                    MessageBox.Show("Please enter your password");
+                }
             }
             else
             {
-                MessageBox.Show("Login Berhasil");
+                MessageBox.Show("Please enter your Username");
             }
         }
 

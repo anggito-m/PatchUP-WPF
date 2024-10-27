@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WpfApp1": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "connectionString": "Server=junpro2024.postgres.database.azure.com;Username=adminsholeh;Database=patchup;Port=5432;Password=Usecasediagram123;SSLMode=Prefer"
+      }
+    }
+  }
+}

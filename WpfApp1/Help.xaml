@@ -40,7 +40,7 @@
 
                     <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
                     <StackPanel>
-                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png" Click="Button_Click"/>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Saved Post" Tag="/icon/saved_post.png"/>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Tutorial" Tag="/icon/tutorial.png"/>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Community" Tag="/icon/community.png"/>
