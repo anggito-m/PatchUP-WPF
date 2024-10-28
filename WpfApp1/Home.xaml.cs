@@ -36,7 +36,7 @@ namespace WpfApp1
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-             
+            
         }
 
         private void SavedPostClick(object sender, RoutedEventArgs e)
@@ -46,7 +46,9 @@ namespace WpfApp1
 
         private void CommunityClick(object sender, RoutedEventArgs e)
         {
-
+            Frame frame = new Frame();
+            frame.Navigate(new Community());
+            this.Content = frame;
         }
 
         private void ChatbotClick(object sender, RoutedEventArgs e)

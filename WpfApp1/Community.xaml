@@ -5,10 +5,259 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="780" d:DesignWidth="1200"
       Title="Community">
 
-    <Grid>
-        
+    <Grid Background="#FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#00029F" Width="250" CornerRadius="0,40,40,0">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Top" Margin="10">
+                    <TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0, 10, 0, 15">
+                <Run Text="Patch"/>
+                <Run Text="UP" Foreground="#00EDFA"/>
+                    </TextBlock>
+
+                    <Separator Background="Gray" Height="5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20" HorizontalAlignment="Left">
+                        <Image Source="/icon/profile.png" Width="60" Height="60" Margin="10,0,10,0">
+                            <Image.Clip>
+                                <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30"/>
+                            </Image.Clip>
+                        </Image>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Robert Fox" Foreground="White" FontWeight="Bold" Margin="0, 0, 0, 5"/>
+                            <TextBlock Text="View Profile" Foreground="White" FontSize="12"/>
+                            <Border BorderBrush="White" BorderThickness="0,0,0,0.5" Width="Auto"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
+                    <StackPanel>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Saved Post" Tag="/icon/saved_post.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Tutorial" Tag="/icon/tutorial.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Community" Tag="/icon/community.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Chatbot" Tag="/icon/chatbot_menu.png"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Playlist" Tag="/icon/playlist.png"/>
+                    </StackPanel>
+
+                    <Separator Margin="0,20,0,30" Background="Gray" Height="5"/>
+
+                    <TextBlock Text="GENERAL" Foreground="#EAEAEF" Margin="10,0,0,5" Opacity="0.85" FontWeight="SemiBold"/>
+                    <StackPanel>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="SettingsIcon"/>
+                        <Button Style="{StaticResource SidebarButtonStyle}" Content="Help" Tag="HelpIcon"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Button Style="{StaticResource SidebarButtonStyle}" Content="Logout" Tag="LogoutIcon" DockPanel.Dock="Bottom" Margin="15, 0, 0, 0"/>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="20">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="White" Width="750" Height="50" CornerRadius="20" BorderBrush="#D6D6D6" BorderThickness="1" Padding="10">
+                        <Grid>
+                            <TextBox x:Name="SearchTextBox" 
+                             Width="700"
+                             Height="Auto"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Foreground="#A3A3A3"
+                             FontSize="14"
+                             Text="Search"
+                             VerticalAlignment="Center" 
+                         />
+                            <Image Source="/icon/search.png"
+                           Width="20"
+                           Height="20"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"
+                         />
+                        </Grid>
+                    </Border>
+
+                    <Button Width="135" Height="50" Background="#00029F" Foreground="White" FontSize="14" FontWeight="Bold" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" BorderThickness="0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Image Source="/icon/filter.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                                        <TextBlock Text="Filters" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+                <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
+                    <StackPanel Background="#FFFFFF" Width="850">
+                        <TextBlock Text="Create Post" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
+
+                        <Border Background="#E9E9EF" CornerRadius="15" Padding="10" Margin="0,0,0,15">
+                            <TextBox Text="Write something..." Background="Transparent" BorderThickness="0" FontSize="14" Foreground="#999" FontStyle="Italic"/>
+                        </Border>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
+                                <Button Width="100" Margin="0,0,10,0" Background="#D1D2F4" BorderThickness="0">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <Image Source="/icon/image.png" Width="20" Margin="0,0,5,0"/>
+                                                    <TextBlock Text="Image" FontSize="14" FontWeight="SemiBold"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+
+                                <Button Width="100" Background="#D1D2F4" BorderThickness="0">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <Image Source="/icon/video.png" Width="20" Margin="0,0,5,0"/>
+                                                    <TextBlock Text="Video" FontSize="14" FontWeight="SemiBold"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+
+                            <Button Content="Post" Width="80" Background="#00029F" Foreground="White" FontWeight="SemiBold" Grid.Column="1">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Grid>
+                    <!-- Define row heights to create a flexible layout -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <!-- Fills the remaining space -->
+                    </Grid.RowDefinitions>
+
+                    <!-- Scrollable content area -->
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="10" PanningMode="VerticalOnly" Height="Auto">
+                        <StackPanel>
+                            <!-- First Post -->
+                            <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
+                                <StackPanel>
+                                    <!-- Profile Section -->
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <Image Source="/icon/profile.png" Width="40" Height="40" Margin="0,0,10,0">
+                                            <Image.Clip>
+                                                <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
+                                            </Image.Clip>
+                                        </Image>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="Account Name" FontWeight="Bold" FontSize="16"/>
+                                            <TextBlock Text="10 days ago" Foreground="#999" FontSize="12"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- Image/Video Preview Section -->
+                                    <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10">
+                                        <TextBlock Text="Image/Video Preview" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666" FontSize="14"/>
+                                    </Border>
+
+                                    <!-- Post Description -->
+                                    <TextBlock Text="This is the post description. It can be anything. This description can be very long, or very short. This is the second line of this post description. Only the first two line is visible in the preview." 
+                               FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                                    <!-- Interaction Section -->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                            <Image Source="/icon/like.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                            <TextBlock Text="167 Likes" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                            <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                            <TextBlock Text="6 Comments" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/icon/share.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                            <TextBlock Text="2 Shares" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
+                                <StackPanel>
+                                    <!-- Profile Section -->
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <Image Source="/icon/profile.png" Width="40" Height="40" Margin="0,0,10,0">
+                                            <Image.Clip>
+                                                <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
+                                            </Image.Clip>
+                                        </Image>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="Account Name" FontWeight="Bold" FontSize="16"/>
+                                            <TextBlock Text="10 days ago" Foreground="#999" FontSize="12"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- Image/Video Preview Section -->
+                                    <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10">
+                                        <TextBlock Text="Image/Video Preview" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666" FontSize="14"/>
+                                    </Border>
+
+                                    <!-- Post Description -->
+                                    <TextBlock Text="This is the post description. It can be anything. This description can be very long, or very short. This is the second line of this post description. Only the first two line is visible in the preview." 
+   FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                                    <!-- Interaction Section -->
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                            <Image Source="/icon/like.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                            <TextBlock Text="167 Likes" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                            <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                            <TextBlock Text="6 Comments" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/icon/share.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                            <TextBlock Text="2 Shares" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- More posts can be added as needed -->
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
