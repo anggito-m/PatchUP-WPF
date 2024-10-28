@@ -17,13 +17,53 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Home : Window
+    public partial class Home : Page
     {
         public Home()
         {
             InitializeComponent();
             UsernameBinding.Text = Model.user.Instance.Name;
             ProfileName.Text = Model.user.Instance.Name;
+        }
+
+        private void TutorialClick(object sender, RoutedEventArgs e)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(new Tutorial());
+            this.Content = frame;
+
+        }
+
+        private void HomeClick(object sender, RoutedEventArgs e)
+        {
+             
+        }
+
+        private void SavedPostClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CommunityClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChatbotClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PlaylistClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HelpClick(object sender, RoutedEventArgs e)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(new Help());
+            this.Content = frame;
         }
     }
 }

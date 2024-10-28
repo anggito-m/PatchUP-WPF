@@ -101,8 +101,9 @@
                 </StackPanel>
                 
                 <Grid Margin="0, 20, 0, 0">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" Height="680">
                         <UniformGrid Rows="3" Columns="3">
+                            
                             <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0, 0, 0, 20">
                                 <Border.Effect>
                                     <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
@@ -190,6 +191,36 @@
                                 <StackPanel Margin="15">
                                     <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
                                     <TextBlock Text="Type 9" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
+                                    <TextBlock Text="A simple description of this type. Can be a definition or examples." FontSize="14" Foreground="#8E8EA9" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0, 0, 0, 20">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
+                                </Border.Effect>
+                                <StackPanel Margin="15">
+                                    <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Type 7" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
+                                    <TextBlock Text="A simple description of this type. Can be a definition or examples." FontSize="14" Foreground="#8E8EA9" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0, 0, 0, 20">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
+                                </Border.Effect>
+                                <StackPanel Margin="15">
+                                    <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Type 7" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
+                                    <TextBlock Text="A simple description of this type. Can be a definition or examples." FontSize="14" Foreground="#8E8EA9" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0, 0, 0, 20">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
+                                </Border.Effect>
+                                <StackPanel Margin="15">
+                                    <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Type 7" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
                                     <TextBlock Text="A simple description of this type. Can be a definition or examples." FontSize="14" Foreground="#8E8EA9" TextWrapping="Wrap" Margin="0,5,0,0"/>
                                 </StackPanel>
                             </Border>

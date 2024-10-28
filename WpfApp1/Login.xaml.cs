@@ -47,7 +47,7 @@ namespace WpfApp1
                         MessageBox.Show("Login Berhasil");
                         // close this window
                         //open home window
-                        Home main = new Home();
+                        HomeWindow main = new HomeWindow();
                         main.Show();
                         Window.GetWindow(this).Close();
                     }
