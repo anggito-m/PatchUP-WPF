@@ -155,107 +155,88 @@
                     </StackPanel>
                 </Border>
 
-                <Grid>
-                    <!-- Define row heights to create a flexible layout -->
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <!-- Fills the remaining space -->
-                    </Grid.RowDefinitions>
-
-                    <!-- Scrollable content area -->
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="10" PanningMode="VerticalOnly" Height="Auto">
-                        <StackPanel>
-                            <!-- First Post -->
-                            <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
-                                <StackPanel>
-                                    <!-- Profile Section -->
-                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                        <Image Source="/icon/profile.png" Width="40" Height="40" Margin="0,0,10,0">
-                                            <Image.Clip>
-                                                <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
-                                            </Image.Clip>
-                                        </Image>
-                                        <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="Account Name" FontWeight="Bold" FontSize="16"/>
-                                            <TextBlock Text="10 days ago" Foreground="#999" FontSize="12"/>
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                    <!-- Image/Video Preview Section -->
-                                    <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10">
-                                        <TextBlock Text="Image/Video Preview" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666" FontSize="14"/>
-                                    </Border>
-
-                                    <!-- Post Description -->
-                                    <TextBlock Text="This is the post description. It can be anything. This description can be very long, or very short. This is the second line of this post description. Only the first two line is visible in the preview." 
-                               FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
-                                    <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
-
-                                    <!-- Interaction Section -->
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
-                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
-                                            <Image Source="/icon/like.png" Width="18" Height="18" Margin="0,0,5,0"/>
-                                            <TextBlock Text="167 Likes" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
-                                            <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
-                                            <TextBlock Text="6 Comments" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="/icon/share.png" Width="18" Height="18" Margin="0,0,5,0"/>
-                                            <TextBlock Text="2 Shares" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
-                                        </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="600" PanningMode="VerticalOnly">
+                    <StackPanel>
+                        <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <Image Source="/icon/profile.png" Width="40" Height="40" Margin="0,0,10,0">
+                                        <Image.Clip>
+                                            <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
+                                        </Image.Clip>
+                                    </Image>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Account Name" FontWeight="Bold" FontSize="16"/>
+                                        <TextBlock Text="10 days ago" Foreground="#999" FontSize="12"/>
                                     </StackPanel>
                                 </StackPanel>
-                            </Border>
+                                
+                                <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10">
+                                    <TextBlock Text="Image/Video Preview" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666" FontSize="14"/>
+                                </Border>
 
-                            <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
-                                <StackPanel>
-                                    <!-- Profile Section -->
-                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                        <Image Source="/icon/profile.png" Width="40" Height="40" Margin="0,0,10,0">
-                                            <Image.Clip>
-                                                <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
-                                            </Image.Clip>
-                                        </Image>
-                                        <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="Account Name" FontWeight="Bold" FontSize="16"/>
-                                            <TextBlock Text="10 days ago" Foreground="#999" FontSize="12"/>
-                                        </StackPanel>
+                                <TextBlock Text="This is the post description. It can be anything. This description can be very long, or very short. This is the second line of this post description. Only the first two line is visible in the preview." 
+                           FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                                <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                                    <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                        <Image Source="/icon/like.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                        <TextBlock Text="167 Likes" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
                                     </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                        <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                        <TextBlock Text="6 Comments" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/icon/share.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                        <TextBlock Text="2 Shares" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
 
-                                    <!-- Image/Video Preview Section -->
-                                    <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10">
-                                        <TextBlock Text="Image/Video Preview" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666" FontSize="14"/>
-                                    </Border>
+                        <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <Image Source="/icon/profile.png" Width="40" Height="40" Margin="0,0,10,0">
+                                        <Image.Clip>
+                                            <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
+                                        </Image.Clip>
+                                    </Image>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Account Name" FontWeight="Bold" FontSize="16"/>
+                                        <TextBlock Text="10 days ago" Foreground="#999" FontSize="12"/>
+                                    </StackPanel>
+                                </StackPanel>
 
-                                    <!-- Post Description -->
-                                    <TextBlock Text="This is the post description. It can be anything. This description can be very long, or very short. This is the second line of this post description. Only the first two line is visible in the preview." 
+                                <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10">
+                                    <TextBlock Text="Image/Video Preview" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666" FontSize="14"/>
+                                </Border>
+
+                                <TextBlock Text="This is the post description. It can be anything. This description can be very long, or very short. This is the second line of this post description. Only the first two line is visible in the preview." 
    FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
-                                    <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
-
-                                    <!-- Interaction Section -->
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
-                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
-                                            <Image Source="/icon/like.png" Width="18" Height="18" Margin="0,0,5,0"/>
-                                            <TextBlock Text="167 Likes" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
-                                            <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
-                                            <TextBlock Text="6 Comments" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="/icon/share.png" Width="18" Height="18" Margin="0,0,5,0"/>
-                                            <TextBlock Text="2 Shares" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
-                                        </StackPanel>
+                                <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                                
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                                    <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                        <Image Source="/icon/like.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                        <TextBlock Text="167 Likes" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
+                                        <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                        <TextBlock Text="6 Comments" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/icon/share.png" Width="18" Height="18" Margin="0,0,5,0"/>
+                                        <TextBlock Text="2 Shares" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </StackPanel>
-                            </Border>
+                            </StackPanel>
+                        </Border>
 
-                            <!-- More posts can be added as needed -->
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
+                    </StackPanel>
+                </ScrollViewer>
 
             </StackPanel>
         </Grid>
