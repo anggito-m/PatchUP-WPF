@@ -53,7 +53,9 @@ namespace WpfApp1
 
         private void ChatbotClick(object sender, RoutedEventArgs e)
         {
-
+            Frame frame = new Frame();
+            frame.Navigate(new Chatbot());
+            this.Content = frame;
         }
 
         private void PlaylistClick(object sender, RoutedEventArgs e)
