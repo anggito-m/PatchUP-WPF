@@ -13,7 +13,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Component:Sidebar/>
+        <Component:Sidebar x:Name="sidebar"/>
 
         <Grid Grid.Column="1" Margin="20, 75">
             <StackPanel>
@@ -58,7 +58,17 @@
                                 </StackPanel>
 
                                 <!-- Transparent Button to capture click events -->
-                                <Button Background="Transparent" BorderThickness="0" Click="BtnTutorialClick"/>
+                                <Button Background="Transparent" BorderThickness="0" Click="BtnTutorialClick" Name="BtnTutorial">
+                                    <Button.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <Trigger Property="Button.IsMouseOver" Value="True">
+                                                    <Setter Property="Button.Opacity" Value="0.2"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                         </Border>
 
@@ -77,7 +87,17 @@
                                 </StackPanel>
 
                                 <!-- Transparent Button to capture click events -->
-                                <Button Background="Transparent" BorderThickness="0" Click="BtnCommunityClick"/>
+                                <Button Background="Transparent" BorderThickness="0" Click="BtnCommunityClick" Name="BtnCommunity">
+                                    <Button.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <Trigger Property="Button.IsMouseOver" Value="True">
+                                                    <Setter Property="Button.Opacity" Value="0.2"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                         </Border>
 
@@ -93,7 +113,17 @@
                                 <TextBlock Text="If you already know what to order, this is the best choice."
                                FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
                             </StackPanel>
-                                <Button Background="Transparent" BorderThickness="0" Click="BtnChatbotClick"/>
+                                <Button Background="Transparent" BorderThickness="0" Click="BtnChatbotClick">
+                                    <Button.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <Trigger Property="Button.IsMouseOver" Value="True">
+                                                    <Setter Property="Button.Opacity" Value="0.2"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                         </Border>
                     </StackPanel>

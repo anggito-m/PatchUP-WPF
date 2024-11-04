@@ -32,24 +32,24 @@
 
                 <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
                 <StackPanel>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png" Click="HomeClick"/>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Saved Post" Tag="/icon/saved_post.png" Click="SavedPostClick"/>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Tutorial" Tag="/icon/tutorial.png" Click="TutorialClick"/>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Community" Tag="/icon/community.png" Click="CommunityClick"/>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Chatbot" Tag="/icon/chatbot_menu.png" Click="ChatbotClick"/>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Playlist" Tag="/icon/playlist.png" Click="PlaylistClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="../icon/home.png" Click="HomeClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Saved Post" Tag="../icon/saved_post.png" Click="SavedPostClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Tutorial" Tag="../icon/tutorial.png" Click="TutorialClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Community" Tag="../icon/community.png" Click="CommunityClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Chatbot" Tag="../icon/chatbot.png" Click="ChatbotClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Playlist" Tag="../icon/playlist.png" Click="PlaylistClick"/>
                 </StackPanel>
 
                 <Separator Margin="0,20,0,30" Background="Gray" Height="5"/>
 
                 <TextBlock Text="GENERAL" Foreground="#EAEAEF" Margin="10,0,0,5" Opacity="0.85" FontWeight="SemiBold"/>
                 <StackPanel>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="SettingsIcon"/>
-                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Help" Tag="HelpIcon" Click="HelpClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="../icon/settings.png"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Help" Tag="../icon/help.png" Click="HelpClick"/>
                 </StackPanel>
             </StackPanel>
 
-            <Button Style="{StaticResource SidebarButtonStyle}" Content="Logout" Tag="LogoutIcon" DockPanel.Dock="Bottom" Margin="15, 0, 0, 0"/>
+            <Button Style="{StaticResource SidebarButtonStyle}" Content="Logout" Tag="../icon/logout.png" DockPanel.Dock="Bottom" Margin="15, 0, 0, 0"/>
         </DockPanel>
     </Border>
 </UserControl>

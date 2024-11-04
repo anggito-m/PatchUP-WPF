@@ -23,51 +23,19 @@ namespace WpfApp1
         {
             InitializeComponent();
             UsernameBinding.Text = Model.user.Instance.Name;
-
+            sidebar.NavigateToPage += Sidebar_NavigateToPage;
         }
 
-        private void TutorialClick(object sender, RoutedEventArgs e)
+        private void Sidebar_NavigateToPage(object sender, string pageName)
         {
             Frame frame = new Frame();
-            frame.Navigate(new Tutorial());
-            this.Content = frame;
-
-        }
-
-        private void HomeClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void SavedPostClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CommunityClick(object sender, RoutedEventArgs e)
-        {
-            Frame frame = new Frame();
-            frame.Navigate(new Community());
-            this.Content = frame;
-        }
-
-        private void ChatbotClick(object sender, RoutedEventArgs e)
-        {
-            Frame frame = new Frame();
-            frame.Navigate(new Chatbot());
-            this.Content = frame;
-        }
-
-        private void PlaylistClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void HelpClick(object sender, RoutedEventArgs e)
-        {
-            Frame frame = new Frame();
-            frame.Navigate(new Help());
-            this.Content = frame;
+            switch (pageName)
+            {
+                case "Home":
+                    frame.Navigate(new Tutorial());
+                    this.Content = frame;
+                    break;
+            }
         }
 
         private void BtnCommunityClick(object sender, RoutedEventArgs e)
@@ -87,8 +55,9 @@ namespace WpfApp1
         private void BtnChatbotClick(object sender, RoutedEventArgs e)
         {
             Frame frame = new Frame();
-            frame.Navigate(new Tutorial());
+            frame.Navigate(new Chatbot());
             this.Content = frame;
         }
+
     }
 }
