@@ -1,5 +1,6 @@
 ﻿<NavigationWindow x:Class="WpfApp1.CustomNavigationWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:Component="clr-namespace:WpfApp1.Component"
                   Source="MainWindow.xaml">
 </NavigationWindow>

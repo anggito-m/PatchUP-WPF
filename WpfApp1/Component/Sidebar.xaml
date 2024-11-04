@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="WpfApp1.Component.Sidebar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Component"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="250">
+    <Border Background="#00029F" Width="250" CornerRadius="0,40,40,0" HorizontalAlignment="Left">
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top" Margin="10">
+                <TextBlock HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0, 10, 0, 15">
+            <Run Text="Patch"/>
+            <Run Text="UP" Foreground="#00EDFA"/>
+                </TextBlock>
+
+                <Separator Background="Gray" Height="5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,20" HorizontalAlignment="Left">
+                    <Image Source="../icon/profile.png" Width="60" Height="60" Margin="10,0,10,0">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,30"/>
+                        </Image.Clip>
+                    </Image>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Name="ProfileName" Text="Robert Fox" Foreground="White" FontWeight="Bold" Margin="0, 0, 0, 5"/>
+                        <TextBlock Text="View Profile" Foreground="White" FontSize="12"/>
+                        <Border BorderBrush="White" BorderThickness="0,0,0,0.5" Width="Auto"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
+                <StackPanel>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png" Click="HomeClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Saved Post" Tag="/icon/saved_post.png" Click="SavedPostClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Tutorial" Tag="/icon/tutorial.png" Click="TutorialClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Community" Tag="/icon/community.png" Click="CommunityClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Chatbot" Tag="/icon/chatbot_menu.png" Click="ChatbotClick"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Playlist" Tag="/icon/playlist.png" Click="PlaylistClick"/>
+                </StackPanel>
+
+                <Separator Margin="0,20,0,30" Background="Gray" Height="5"/>
+
+                <TextBlock Text="GENERAL" Foreground="#EAEAEF" Margin="10,0,0,5" Opacity="0.85" FontWeight="SemiBold"/>
+                <StackPanel>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="SettingsIcon"/>
+                    <Button Style="{StaticResource SidebarButtonStyle}" Content="Help" Tag="HelpIcon" Click="HelpClick"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Button Style="{StaticResource SidebarButtonStyle}" Content="Logout" Tag="LogoutIcon" DockPanel.Dock="Bottom" Margin="15, 0, 0, 0"/>
+        </DockPanel>
+    </Border>
+</UserControl>
