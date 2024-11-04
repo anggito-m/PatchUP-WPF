@@ -22,18 +22,14 @@ namespace WpfApp1
     {
         public Welcome()
         {
-            InitializeComponent();
-
-            
+            InitializeComponent();          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             Frame frame = new Frame();
             frame.Navigate(new Login());
             this.Content = frame;
-
         }
     }
 }

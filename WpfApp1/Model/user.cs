@@ -31,7 +31,6 @@ namespace WpfApp1.Model
             Password = password;
         }
         string connectionString = Environment.GetEnvironmentVariable("connectionString");
-        
         public int Login(string username, string inputPassword)
         {
             string query = "SELECT * FROM \"user\" WHERE \"username\" = @username";

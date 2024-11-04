@@ -35,7 +35,7 @@
                             <Border BorderBrush="White" BorderThickness="0,0,0,0.5" Width="Auto"/>
                         </StackPanel>
                     </StackPanel>
-                    
+
                     <TextBlock Text="MENU" Foreground="#EAEAEF" Margin="10,10,0,5" Opacity="0.85"/>
                     <StackPanel>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Home" Tag="/icon/home.png" Click="HomeClick"/>
@@ -47,7 +47,7 @@
                     </StackPanel>
 
                     <Separator Margin="0,20,0,30" Background="Gray" Height="5"/>
-                    
+
                     <TextBlock Text="GENERAL" Foreground="#EAEAEF" Margin="10,0,0,5" Opacity="0.85" FontWeight="SemiBold"/>
                     <StackPanel>
                         <Button Style="{StaticResource SidebarButtonStyle}" Content="Settings" Tag="SettingsIcon"/>
@@ -91,34 +91,54 @@
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
                             </Border.Effect>
-                            <StackPanel Margin="15">
-                                <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Tutorial" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
-                                <TextBlock Text="Simplify your decisions through our Smart Menu Assistant who will help you."
-                               FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
-                            </StackPanel>
+
+                            <!-- Grid to allow overlaying elements -->
+                            <Grid>
+                                <StackPanel Margin="15">
+                                    <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Tutorial" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
+                                    <TextBlock Text="Simplify your decisions through our Smart Menu Assistant who will help you."
+                       FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                </StackPanel>
+
+                                <!-- Transparent Button to capture click events -->
+                                <Button Background="Transparent" BorderThickness="0" Click="BtnTutorialClick"/>
+                            </Grid>
                         </Border>
+
+
                         <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0,0,20,0">
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
                             </Border.Effect>
-                            <StackPanel Margin="15">
-                                <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
-                                <TextBlock Text="Community" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
-                                <TextBlock Text="Simplify your decisions through our Smart Menu Assistant who will help you."
-                               FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
-                            </StackPanel>
+
+                            <Grid>
+                                <StackPanel Margin="15">
+                                    <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="Community" FontSize="18" FontWeight="Bold" Foreground="#32324D"/>
+                                    <TextBlock Text="Simplify your decisions through our Smart Menu Assistant who will help you."
+                       FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                </StackPanel>
+
+                                <!-- Transparent Button to capture click events -->
+                                <Button Background="Transparent" BorderThickness="0" Click="BtnCommunityClick"/>
+                            </Grid>
                         </Border>
-                        <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1">
+
+
+                        <Border Width="285" Height="250" Background="#EEEEEE" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0,0,20,0">
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" Opacity="0.3"/>
                             </Border.Effect>
+                            <Grid>
                             <StackPanel Margin="15">
                                 <Image Source="/icon/book.png" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Left"/>
                                 <TextBlock Text="Chatbot" FontSize="18" FontWeight="Bold" Foreground="#32324D" />
                                 <TextBlock Text="If you already know what to order, this is the best choice."
                                FontSize="14" Foreground="#6F6F80" TextWrapping="Wrap" Margin="0,5,0,0"/>
                             </StackPanel>
+                                <Button Background="Transparent" BorderThickness="0" Click="BtnChatbotClick"/>
+                            </Grid>
                         </Border>
                     </StackPanel>
                 </Grid>

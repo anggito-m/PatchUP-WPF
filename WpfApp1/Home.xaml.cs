@@ -24,6 +24,7 @@ namespace WpfApp1
             InitializeComponent();
             UsernameBinding.Text = Model.user.Instance.Name;
             ProfileName.Text = Model.user.Instance.Name;
+
         }
 
         private void TutorialClick(object sender, RoutedEventArgs e)
@@ -65,6 +66,27 @@ namespace WpfApp1
         {
             Frame frame = new Frame();
             frame.Navigate(new Help());
+            this.Content = frame;
+        }
+
+        private void BtnCommunityClick(object sender, RoutedEventArgs e)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(new Community());
+            this.Content = frame;
+        }
+
+        private void BtnTutorialClick(object sender, RoutedEventArgs e)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(new Tutorial());
+            this.Content = frame;
+        }
+
+        private void BtnChatbotClick(object sender, RoutedEventArgs e)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(new Tutorial());
             this.Content = frame;
         }
     }
