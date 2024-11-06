@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon\PatchUP.ico</ApplicationIcon>
+    <PackageIcon>PatchUP.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +23,7 @@
     <None Remove="icon\light.png" />
     <None Remove="icon\like.png" />
     <None Remove="icon\logout.png" />
+    <None Remove="icon\PatchUP.ico" />
     <None Remove="icon\playlist.png" />
     <None Remove="icon\profile.png" />
     <None Remove="icon\saved_post.png" />
@@ -32,6 +35,10 @@
     <None Remove="img\BottomVector.png" />
     <None Remove="img\UpperVector.png" />
     <None Remove="img\Welcome.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon\PatchUP.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +57,7 @@
     <Resource Include="icon\image.png" />
     <Resource Include="icon\light.png" />
     <Resource Include="icon\logout.png" />
+    <Resource Include="icon\PatchUP.ico" />
     <Resource Include="icon\playlist.png" />
     <Resource Include="icon\profile.png" />
     <Resource Include="icon\saved_post.png" />
@@ -72,6 +80,13 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="icon\PatchUP.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
