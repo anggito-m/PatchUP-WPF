@@ -25,6 +25,13 @@ namespace WpfApp1
         {
             InitializeComponent();
             chatbotService = new ChatbotService();
+            sidebar.NavigateToPage += Sidebar_NavigateToPage;
+        }
+        private void Sidebar_NavigateToPage(object sender, string pageName)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(sidebar.Navigate(pageName));
+            this.Content = frame;
         }
         private async void SendButton_Click(object sender, RoutedEventArgs e)
         {

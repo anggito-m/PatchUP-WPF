@@ -25,17 +25,11 @@ namespace WpfApp1
             UsernameBinding.Text = Model.user.Instance.Name;
             sidebar.NavigateToPage += Sidebar_NavigateToPage;
         }
-
         private void Sidebar_NavigateToPage(object sender, string pageName)
         {
             Frame frame = new Frame();
-            switch (pageName)
-            {
-                case "Home":
-                    frame.Navigate(new Tutorial());
-                    this.Content = frame;
-                    break;
-            }
+            frame.Navigate(sidebar.Navigate(pageName));
+            this.Content = frame;
         }
 
         private void BtnCommunityClick(object sender, RoutedEventArgs e)

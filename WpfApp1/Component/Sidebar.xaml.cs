@@ -26,19 +26,45 @@ namespace WpfApp1.Component
             ProfileName.Text = Model.user.Instance.Name;
         }
 
-        private event EventHandler<string> NavigateToPage;
-        public object jdfjh()
+        public event EventHandler<string> NavigateToPage;
+        public object Navigate(string pageName)
         {
             Frame frame = new Frame();
-            switch(NavigateToPage.)
+            object page;
+            switch (pageName)
             {
                 case "Home":
-
-
+                    page = new Home();
+                    break;
+                case "SavedPost":
+                    page = (new Tutorial());
+                    break;
+                case "Tutorial":
+                    page = (new Tutorial());
+                    break;
+                case "Community":
+                    page = (new Community());
+                    break;
+                case "Chatbot":
+                    page = (new Chatbot());
+                    break;
+                case "Playlist":
+                    page = (new Home());
+                    break;
+                case "Help":
+                    page = (new Help());
+                    break;
+                case "LogOut":
+                    page = (new Chatbot());
+                    break;
+                default:
+                    MessageBox.Show(pageName);
+                    page = new Home();
+                    break;
             }
-            frame.Navigate(new Tutorial());
-            return this.Content = frame;
-            ;
+            frame.Navigate(page);
+            Content = frame;
+            return frame;
         }
 
         private void HomeClick(object sender, RoutedEventArgs e)

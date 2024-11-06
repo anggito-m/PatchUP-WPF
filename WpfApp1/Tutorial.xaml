@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Component:Sidebar/>
+        <Component:Sidebar x:Name="sidebar"/>
 
         <Grid Grid.Column="1" Margin="20">
             <StackPanel>

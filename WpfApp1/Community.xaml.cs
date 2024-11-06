@@ -23,6 +23,13 @@ namespace WpfApp1
         public Community()
         {
             InitializeComponent();
+            sidebar.NavigateToPage += Sidebar_NavigateToPage;
+        }
+        private void Sidebar_NavigateToPage(object sender, string pageName)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(sidebar.Navigate(pageName));
+            this.Content = frame;
         }
     }
 }
