@@ -30,27 +30,22 @@ namespace WpfApp1
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ambil input dari TextBox
             string fullName = FullNameTextBox.Text;
             string userName = UserNameTextBox.Text;
             string phone = PhoneTextBox.Text;
             string email = EmailTextBox.Text;
             string bio = BioTextBox.Text;
 
-            // Validasi input
             if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(email))
             {
                 MessageBox.Show("Full Name, User Name, dan Email tidak boleh kosong!", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            // Panggil metode untuk update profile
             UpdateProfile(userName, email, fullName, phone, bio);
         }
 
         private void UpdateProfile(string username, string email, string name, string phone, string bio)
         {
-            // Query SQL untuk update data
             string query = @"
                 UPDATE ""user""
                 SET name = @name,
@@ -64,7 +59,6 @@ namespace WpfApp1
             {
                 try
                 {
-                    // Buat command dengan parameter
                     NpgsqlCommand command = new NpgsqlCommand(query, connection);
                     command.Parameters.AddWithValue("@username", username);
                     command.Parameters.AddWithValue("@name", name);
@@ -72,7 +66,6 @@ namespace WpfApp1
                     command.Parameters.AddWithValue("@email", email);
                     command.Parameters.AddWithValue("@bio", bio ?? (object)DBNull.Value);
 
-                    // Buka koneksi dan eksekusi query
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -94,6 +87,14 @@ namespace WpfApp1
                     connection.Close();
                 }
             }
+        }
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            FullNameTextBox.Text = string.Empty;
+            UserNameTextBox.Text = string.Empty;
+            PhoneTextBox.Text = string.Empty;
+            EmailTextBox.Text = string.Empty;
+            BioTextBox.Text = string.Empty;
         }
     }
 }

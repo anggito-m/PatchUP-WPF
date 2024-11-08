@@ -63,53 +63,14 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="280">
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
                         <Border Width="160" Height="160" CornerRadius="80" Background="White" HorizontalAlignment="Center" Padding="10" Margin="0, 0, 0, -20">
                             <StackPanel>
                                 <Image Source="/icon/profile.png" Width="120" Height="120" ClipToBounds="True" Stretch="UniformToFill" />
-                                <Border Width="30" Height="30" Background="#E0E0E0" CornerRadius="15" HorizontalAlignment="Right" Margin="0,-40,5,0">
-                                    <Image Source="/icon/camera.png" Width="16" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Border>
                             </StackPanel>
                         </Border>
                         <TextBlock Text="Aisha Zeyn" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"/>
                         <TextBlock Text="aisha@gmail.com" FontSize="14" Foreground="#666" HorizontalAlignment="Center"/>
-
-                        <StackPanel Margin="0,40,0,0" Width="227">
-                            <TextBlock Text="Social Media" FontSize="18" FontWeight="Bold" Foreground="#333" Margin="0,10,0,0"/>
-                            <StackPanel Margin="0,10,0,0">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5">
-                                    <Image Source="/icon/behance.png" Width="24" Height="24"/>
-                                    <TextBlock Text="@aishazeyn1" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                    <Button Content="Link" Width="60" Height="24" Margin="65, 0, 0, 0" VerticalAlignment="Center" Background="#0066FF" Foreground="White" FontSize="12" BorderThickness="0"/>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5">
-                                    <Image Source="/icon/github.png" Width="24" Height="24"/>
-                                    <TextBlock Text="@aishazeyn1" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                    <Button Content="Link" Width="60" Height="24" Margin="65, 0, 0, 0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#0066FF" Foreground="White" FontSize="12" BorderThickness="0"/>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5">
-                                    <Image Source="/icon/twitter.png" Width="24" Height="24"/>
-                                    <TextBlock Text="@aishazeyn1" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                    <Button Content="Link" Width="60" Height="24" Margin="65, 0, 0, 0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#0066FF" Foreground="White" FontSize="12" BorderThickness="0"/>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5">
-                                    <Image Source="/icon/website.png" Width="24" Height="24"/>
-                                    <TextBlock Text="@aishazeyn1" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                    <Button Content="Link" Width="60" Height="24" Margin="65, 0, 0, 0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#0066FF" Foreground="White" FontSize="12" BorderThickness="0"/>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,5,0,5">
-                                    <Image Source="/icon/pinterest.png" Width="24" Height="24"/>
-                                    <TextBlock Text="@aishazeyn1" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                    <Button Content="Link" Width="60" Height="24" Margin="65, 0, 0, 0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#0066FF" Foreground="White" FontSize="12" BorderThickness="0"/>
-                                </StackPanel>
-                                <TextBlock Text="View more" FontSize="12" Foreground="#2D2BC8" HorizontalAlignment="Center" Margin="0,10,0,0" FontWeight="Bold"/>
-                            </StackPanel>
-                        </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="10,20,10,0" Grid.ColumnSpan="2">
                         <TextBlock Text="My Profile!" FontSize="20" FontWeight="Bold"/>
@@ -136,7 +97,7 @@
                             <TextBlock Text="Phone" FontWeight="Bold" FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,5,0,5"/>
                             <TextBox x:Name="PhoneTextBox" Text="777 777 77 77" FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,5,0,10" Padding="10" BorderBrush="#CCC" BorderThickness="1"/>
 
-                            <TextBlock Text="Email Address" FontWeight="Bold" FontSize="14" Grid.Row="2" Grid.Column="2" Margin="0,5,0,5"/>
+                            <TextBlock Text="Email Address*" FontWeight="Bold" FontSize="14" Grid.Row="2" Grid.Column="2" Margin="0,5,0,5"/>
                             <TextBox x:Name="EmailTextBox" Text="example@email.com" FontSize="14" Grid.Row="3" Grid.Column="2" Margin="0,5,0,10" Padding="10" BorderBrush="#CCC" BorderThickness="1"/>
                         </Grid>
 
@@ -147,7 +108,7 @@
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,20,0,0">
                             <Button x:Name="UpdateButton" Click="UpdateButton_Click" Content="Update" Width="100" Height="40" Background="#0066FF" Foreground="White" FontWeight="Bold" Margin="0,0,10,0" BorderThickness="0" Padding="5"/>
-                            <Button Content="Cancel" Width="100" Height="40" Background="#FFFFFF" Foreground="#FF5B5B" FontWeight="Bold" BorderBrush="#FF5B5B" BorderThickness="1" Padding="5"/>
+                            <Button Content="Cancel" Click="CancelButton_Click" Width="100" Height="40" Background="#FFFFFF" Foreground="#FF5B5B" FontWeight="Bold" BorderBrush="#FF5B5B" BorderThickness="1" Padding="5"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
