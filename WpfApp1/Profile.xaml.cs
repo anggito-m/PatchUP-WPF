@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace WpfApp1
 {
@@ -20,9 +21,79 @@ namespace WpfApp1
     /// </summary>
     public partial class Profile : Page
     {
+        private string connectionString = Environment.GetEnvironmentVariable("connectionString");
+
         public Profile()
         {
             InitializeComponent();
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Ambil input dari TextBox
+            string fullName = FullNameTextBox.Text;
+            string userName = UserNameTextBox.Text;
+            string phone = PhoneTextBox.Text;
+            string email = EmailTextBox.Text;
+            string bio = BioTextBox.Text;
+
+            // Validasi input
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Full Name, User Name, dan Email tidak boleh kosong!", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Panggil metode untuk update profile
+            UpdateProfile(userName, email, fullName, phone, bio);
+        }
+
+        private void UpdateProfile(string username, string email, string name, string phone, string bio)
+        {
+            // Query SQL untuk update data
+            string query = @"
+                UPDATE ""user""
+                SET name = @name,
+                    email = @email,
+                    phone = @phone,
+                    bio = @bio
+                WHERE username = @username;
+            ";
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    // Buat command dengan parameter
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@name", name);
+                    command.Parameters.AddWithValue("@phone", phone ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@email", email);
+                    command.Parameters.AddWithValue("@bio", bio ?? (object)DBNull.Value);
+
+                    // Buka koneksi dan eksekusi query
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Profile berhasil diperbarui!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Profile tidak ditemukan atau tidak ada perubahan.", "Update Gagal", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Terjadi kesalahan saat memperbarui profile: " + ex.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
     }
 }

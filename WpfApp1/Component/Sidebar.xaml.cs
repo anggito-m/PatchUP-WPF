@@ -57,6 +57,9 @@ namespace WpfApp1.Component
                 case "LogOut":
                     page = (new Chatbot());
                     break;
+                case "Profile":
+                    page = (new Profile());
+                    break;
                 default:
                     MessageBox.Show(pageName);
                     page = new Home();
@@ -118,6 +121,11 @@ namespace WpfApp1.Component
         {
             NavigateToPage?.Invoke(this, "Help");
 
+        }
+
+        private void ProfileClick(object sender, RoutedEventArgs e)
+        {
+            NavigateToPage?.Invoke(this, "Profile");
         }
     }
 }
