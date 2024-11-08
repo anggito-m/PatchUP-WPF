@@ -92,7 +92,7 @@
                             <TextBox x:Name="FullNameTextBox" Text="Aisha Zeyn" FontSize="14" Grid.Row="1" Grid.Column="0" Margin="0,5,0,10" Padding="10" BorderBrush="#CCC" BorderThickness="1"/>
 
                             <TextBlock Text="User Name*" FontWeight="Bold" FontSize="14" Grid.Row="0" Grid.Column="2" Margin="0,5,0,5"/>
-                            <TextBox x:Name="UserNameTextBox" Text="example@email.com" FontSize="14" Grid.Row="1" Grid.Column="2" Margin="0,5,0,10" Padding="10" BorderBrush="#CCC" BorderThickness="1"/>
+                            <TextBox x:Name="UserNameTextBox" Text="Aisha" FontSize="14" Grid.Row="1" Grid.Column="2" Margin="0,5,0,10" Padding="10" BorderBrush="#CCC" BorderThickness="1"/>
 
                             <TextBlock Text="Phone" FontWeight="Bold" FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,5,0,5"/>
                             <TextBox x:Name="PhoneTextBox" Text="777 777 77 77" FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,5,0,10" Padding="10" BorderBrush="#CCC" BorderThickness="1"/>
