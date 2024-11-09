@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Component;
+using Npgsql;
 
 namespace WpfApp1
 {
@@ -20,9 +23,11 @@ namespace WpfApp1
     /// </summary>
     public partial class Help : Page
     {
+        private string connectionString = Environment.GetEnvironmentVariable("connectionString");
         public Help()
         {
             InitializeComponent();
+            LoadFAQFromDatabase();
             try
             {
                 sidebar.NavigateToPage += Sidebar_NavigateToPage;
@@ -38,5 +43,38 @@ namespace WpfApp1
             frame.Navigate(sidebar.Navigate(pageName));
             this.Content = frame;
         }
+        private void LoadFAQFromDatabase()
+        {
+            try
+            {
+                using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT header_text, content_text FROM FAQ";
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string headerText = reader["header_text"].ToString();
+                            string contentText = reader["content_text"].ToString();
+
+                            FAQExpander faqExpander = new FAQExpander
+                            {
+                                HeaderText = headerText,
+                                ContentText = contentText
+                            };
+
+                            faqStackPanel.Children.Add(faqExpander);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading FAQs: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

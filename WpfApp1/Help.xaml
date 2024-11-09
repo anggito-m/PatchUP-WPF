@@ -21,21 +21,13 @@
             <StackPanel>
                 <Component:SearchBar />
 
-                <StackPanel Width="910">
+                <StackPanel Width="910" Name="faqStackPanel">
                     <TextBlock Text="Frequently Asked Questions" 
                        FontSize="24" 
                        FontWeight="Bold" 
                        HorizontalAlignment="Center" 
                        Margin="0, 20, 0, 30"
                      />
-                    <Component:FAQExpander HeaderText="  Apa itu PatchUP?" 
-                           ContentText="PatchUP adalah aplikasi yang membantu Anda memperbaiki barang-barang rumah tangga dengan panduan langkah demi langkah. Aplikasi ini menyediakan tutorial lengkap dan instruksi untuk memperbaiki berbagai jenis perangkat, mulai dari elektronik hingga peralatan dapur." />
-                    <Component:FAQExpander HeaderText="  Bagaimana cara mencari tutorial perbaikan?" 
-                           ContentText="Anda dapat mencari tutorial dengan menggunakan fitur pencarian di halaman utama. Cukup masukkan nama perangkat atau masalah yang Anda hadapi, dan PatchUP akan menampilkan daftar panduan yang sesuai." />
-                    <Component:FAQExpander HeaderText="  Apakah tutorial yang ada di PatchUP aman untuk diikuti?" 
-                           ContentText="Semua tutorial di PatchUP telah ditinjau oleh tim kami dan komunitas untuk memastikan keamanan dan keakuratannya. Namun, kami tetap menyarankan Anda untuk berhati-hati dan memastikan bahwa Anda memiliki alat yang tepat sebelum memulai perbaikan." />
-                    <Component:FAQExpander HeaderText="  Apakah PatchUP tersedia dalam beberapa bahasa?" 
-                           ContentText="Saat ini, PatchUP mendukung beberapa bahasa, termasuk Bahasa Indonesia dan Inggris. Kami sedang bekerja untuk menambahkan lebih banyak bahasa di versi mendatang." />
                 </StackPanel>
 
             </StackPanel>
