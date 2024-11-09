@@ -23,17 +23,20 @@ namespace WpfApp1
         public Help()
         {
             InitializeComponent();
-            sidebar.NavigateToPage += Sidebar_NavigateToPage;
+            try
+            {
+                sidebar.NavigateToPage += Sidebar_NavigateToPage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error during initialization: {ex.Message}", "Initialization Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void Sidebar_NavigateToPage(object sender, string pageName)
         {
             Frame frame = new Frame();
             frame.Navigate(sidebar.Navigate(pageName));
             this.Content = frame;
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

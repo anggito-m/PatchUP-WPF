@@ -28,70 +28,14 @@
                        HorizontalAlignment="Center" 
                        Margin="0, 20, 0, 30"
                      />
-                    <Expander Header="What is UX design?" 
-                       Background="#F9F6F2" 
-                       FontWeight="Bold" 
-                       FontSize="16" 
-                       Padding="10"
-                       Margin="0, 0, 0, 10"
-                       HorizontalContentAlignment="Stretch">
-                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
-                            <TextBlock Text="UX design stands for User Experience design. It is the process of designing digital or physical products that are easy to use, intuitive, and enjoyable for the user."
-                               FontSize="14" 
-                               FontWeight="Normal" 
-                               Foreground="#444444"
-                               TextWrapping="Wrap"
-                             />
-                         </StackPanel>
-                    </Expander>
-                    <Expander Header="What are the key principles of UX design?" 
-                       Background="#F9F6F2" 
-                       FontWeight="Bold" 
-                       FontSize="16" 
-                       Padding="10"
-                       Margin="0, 0, 0, 10"
-                       HorizontalContentAlignment="Stretch">
-                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
-                            <TextBlock Text="Some key principles of UX design include usability, accessibility, and consistency."
-                                FontSize="14" 
-                                FontWeight="Normal" 
-                                Foreground="#444444"
-                                TextWrapping="Wrap"
-                            />
-                        </StackPanel>
-                    </Expander>
-                    <Expander Header="What is the difference between UX and UI design?" 
-                       Background="#F9F6F2" 
-                       FontWeight="Bold" 
-                       FontSize="16" 
-                       Padding="10"
-                       Margin="0, 0, 0, 10"
-                       HorizontalContentAlignment="Stretch">
-                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
-                            <TextBlock Text="UX design focuses on the overall experience of the user, while UI design focuses on the look and feel of the product."
-                                FontSize="14" 
-                                FontWeight="Normal" 
-                                Foreground="#444444"
-                                TextWrapping="Wrap"
-                             />
-                        </StackPanel>
-                    </Expander>
-                    <Expander Header="What is a wireframe?" 
-                       Background="#F9F6F2" 
-                       FontWeight="Bold" 
-                       FontSize="16" 
-                       Padding="10"
-                       Margin="0, 0, 0, 10"
-                       HorizontalContentAlignment="Stretch">
-                        <StackPanel Background="#F9F6F2" Margin="25, 0, 0, 0">
-                            <TextBlock Text="A wireframe is a visual guide that represents the skeletal framework of a website or application."
-                                FontSize="14" 
-                                FontWeight="Normal" 
-                                Foreground="#444444"
-                                TextWrapping="Wrap"
-                            />
-                        </StackPanel>
-                    </Expander>
+                    <Component:FAQExpander HeaderText="  Apa itu PatchUP?" 
+                           ContentText="PatchUP adalah aplikasi yang membantu Anda memperbaiki barang-barang rumah tangga dengan panduan langkah demi langkah. Aplikasi ini menyediakan tutorial lengkap dan instruksi untuk memperbaiki berbagai jenis perangkat, mulai dari elektronik hingga peralatan dapur." />
+                    <Component:FAQExpander HeaderText="  Bagaimana cara mencari tutorial perbaikan?" 
+                           ContentText="Anda dapat mencari tutorial dengan menggunakan fitur pencarian di halaman utama. Cukup masukkan nama perangkat atau masalah yang Anda hadapi, dan PatchUP akan menampilkan daftar panduan yang sesuai." />
+                    <Component:FAQExpander HeaderText="  Apakah tutorial yang ada di PatchUP aman untuk diikuti?" 
+                           ContentText="Semua tutorial di PatchUP telah ditinjau oleh tim kami dan komunitas untuk memastikan keamanan dan keakuratannya. Namun, kami tetap menyarankan Anda untuk berhati-hati dan memastikan bahwa Anda memiliki alat yang tepat sebelum memulai perbaikan." />
+                    <Component:FAQExpander HeaderText="  Apakah PatchUP tersedia dalam beberapa bahasa?" 
+                           ContentText="Saat ini, PatchUP mendukung beberapa bahasa, termasuk Bahasa Indonesia dan Inggris. Kami sedang bekerja untuk menambahkan lebih banyak bahasa di versi mendatang." />
                 </StackPanel>
 
             </StackPanel>
