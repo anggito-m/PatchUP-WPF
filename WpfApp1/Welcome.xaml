@@ -49,7 +49,7 @@
                         Height="50"
                         Background="#5469D4" 
                         Foreground="White" 
-                        FontSize="24"
+                        FontSize="20"
                         HorizontalAlignment="Left" 
                         BorderBrush="{x:Null}" Click="Button_Click"
                         >
