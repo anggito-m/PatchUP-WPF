@@ -50,7 +50,8 @@
                         Background="#5469D4" 
                         Foreground="White" 
                         FontSize="20"
-                        HorizontalAlignment="Left" 
+                        HorizontalAlignment="Left"
+                        Cursor="Hand"
                         BorderBrush="{x:Null}" Click="Button_Click"
                         >
                     <Button.Template>

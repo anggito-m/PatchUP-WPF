@@ -10,7 +10,8 @@
       ShowsNavigationUI="False">
 
     <Grid Background="#FFFFFF">
-        <Button Content="Back to Welcome Page" 
+        <Button Content="Back to Welcome Page"
+                Cursor="Hand"
                 Width="200" 
                 Height="45" 
                 Margin="20"
@@ -94,7 +95,8 @@
                              BorderBrush="{x:Null}"
                              Click="TogglePasswordVisibility_Click">
                             <TextBlock Text="👁️" 
-                               FontSize="18" 
+                               FontSize="18"
+                               Cursor="Hand"
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Center"/>
                         </Button>
@@ -106,8 +108,10 @@
                               Width="140" 
                               VerticalAlignment="Center"
                               Foreground="#333333"
+                              Cursor="Hand"
                               FontSize="14"/>
                     <Button Content="Forgot Password?" 
+                            Cursor="Hand"
                             Background="Transparent" 
                             Foreground="#5469D4" 
                             BorderBrush="Transparent" 
@@ -116,7 +120,8 @@
                             Click="Forgot_Password"/>
                 </StackPanel>
 
-                <Button Content="Login" 
+                <Button Content="Login"
+                        Cursor="Hand"
                         Width="350" 
                         Height="45"
                         Background="#5469D4" 
@@ -144,6 +149,7 @@
                             FontWeight="Bold"
                             VerticalAlignment="Center" 
                             Click="Register_Button"
+                            Cursor="Hand"
                             FontSize="16"
                             Margin="5, 0, 0, 0"/>
                 </StackPanel>
