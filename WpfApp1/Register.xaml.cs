@@ -66,5 +66,49 @@ namespace WpfApp1
         {
 
         }
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
+
+        private bool isPasswordVisible = false;
+        private bool isConfirmPasswordVisible = false;
+
+        private void TogglePasswordVisibility_Click(object sender, RoutedEventArgs e)
+        {
+            if (isPasswordVisible)
+            {
+                PasswordTextBoxVisible.Visibility = Visibility.Collapsed;
+                PasswordTextBox.Visibility = Visibility.Visible;
+                PasswordTextBox.Password = PasswordTextBoxVisible.Text;
+                isPasswordVisible = false;
+            }
+            else
+            {
+                PasswordTextBoxVisible.Visibility = Visibility.Visible;
+                PasswordTextBox.Visibility = Visibility.Collapsed;
+                PasswordTextBoxVisible.Text = PasswordTextBox.Password;
+                isPasswordVisible = true;
+            }
+        }
+
+        private void ToggleConfirmPasswordVisibility_Click(object sender, RoutedEventArgs e)
+        {
+            if (isConfirmPasswordVisible)
+            {
+                ConfirmPasswordTextBoxVisible.Visibility = Visibility.Collapsed;
+                ConfirmPasswordTextBox.Visibility = Visibility.Visible;
+                ConfirmPasswordTextBox.Password = ConfirmPasswordTextBoxVisible.Text;
+                isConfirmPasswordVisible = false;
+            }
+            else
+            {
+                ConfirmPasswordTextBoxVisible.Visibility = Visibility.Visible;
+                ConfirmPasswordTextBox.Visibility = Visibility.Collapsed;
+                ConfirmPasswordTextBoxVisible.Text = ConfirmPasswordTextBox.Password;
+                isConfirmPasswordVisible = true;
+            }
+        }
+
     }
 }
