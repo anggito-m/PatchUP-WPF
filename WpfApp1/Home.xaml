@@ -15,8 +15,9 @@
 
         <Component:Sidebar x:Name="sidebar"/>
 
-        <Grid Grid.Column="1" Margin="20, 75">
+        <Grid Grid.Column="1" Margin="20, 0">
             <StackPanel>
+                <Component:SearchBar Margin="0, 20" />
                 <Border Width="900" Height="225" Background="#4143E3" CornerRadius="30" Padding="20, 0, 20, 0" ClipToBounds="True">
                     <Grid>
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0">
