@@ -97,10 +97,36 @@ namespace WpfApp1
         {
 
         }
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigasi kembali ke WelcomePage
+            this.NavigationService.Navigate(new Welcome());
+        }
 
+        private bool isPasswordVisible = false;
+
+        private void TogglePasswordVisibility_Click(object sender, RoutedEventArgs e)
+        {
+            if (isPasswordVisible)
+            {
+                // Sembunyikan password
+                PasswordTextBoxVisible.Visibility = Visibility.Collapsed;
+                PasswordTextBox.Visibility = Visibility.Visible;
+                PasswordTextBox.Password = PasswordTextBoxVisible.Text;
+                isPasswordVisible = false;
+            }
+            else
+            {
+                // Tampilkan password
+                PasswordTextBoxVisible.Visibility = Visibility.Visible;
+                PasswordTextBox.Visibility = Visibility.Collapsed;
+                PasswordTextBoxVisible.Text = PasswordTextBox.Password;
+                isPasswordVisible = true;
+            }
+        }
         private void UsernameTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if(e.KeyboardDevice.IsKeyDown(Key.Enter))
+            if (e.KeyboardDevice.IsKeyDown(Key.Enter))
             {
                 PasswordTextBox.Focus();
             }

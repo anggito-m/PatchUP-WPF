@@ -5,19 +5,39 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp1"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="780" d:DesignWidth="1200"
       Title="Login"
       ShowsNavigationUI="False"
       >
 
     <Grid Background="#FFFFFF">
-        <Image Source="img\BottomVector.png"
-           HorizontalAlignment="Left" VerticalAlignment="Bottom"
-           Width="313" Height="209" Margin="532,0,0,0"/>
+        <Button Content="Back to Welcome Page"
+                Cursor="Hand"
+                Width="200" 
+                Height="45" 
+                Margin="20"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"
+                FontSize="14"
+                FontWeight="Bold"
+                Background="#5469D4" 
+                Foreground="White"
+                Click="Back_Button_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="15" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
+        <Image Source="img\BottomVector.png"
+               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+               Width="583" Height="433" Margin="617,0,0,0"/>
         <Image Source="img\UpperVector.png"
-           HorizontalAlignment="Right" VerticalAlignment="Top"
-           Width="217" Height="171"/>
+               HorizontalAlignment="Right" VerticalAlignment="Top"
+               Width="539" Height="248"/>
         <Grid Margin="50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
@@ -25,51 +45,116 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0" Stretch="Uniform" 
-               Source="img\Welcome.jpg"
-               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                   Source="img\Welcome.jpg"
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Width="568" Grid.ColumnSpan="2" />
 
-            <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0">
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="420" Width="400">
                 <TextBlock Text="Welcome Back!" 
-                       FontSize="22" 
-                       FontWeight="SemiBold" 
-                       Foreground="Black"
-                       Margin="0,0,0,5"
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="Black"
+                           Margin="0,0,0,5"
                            HorizontalAlignment="Center"/>
                 <TextBlock Text="Login with your account" 
-                       FontSize="14" 
-                       FontWeight="Light" 
-                       Foreground="Black"
-                       Margin="0,0,0,20"
+                           FontSize="18" 
+                           FontWeight="Regular" 
+                           Foreground="#666666"
+                           Margin="0,0,0,30"
                            HorizontalAlignment="Center"/>
-                <TextBlock Text="Username" Margin="0,0,0,5"></TextBlock>
-                <TextBox x:Name="UsernameTextBox" Width="250" Height="24" Margin="0, 0,0,10" TextChanged="UsernameTextBox_TextChanged" KeyDown="UsernameTextBox_KeyDown"/>
-                <TextBlock Text="Password" Margin="0,0,0,5"></TextBlock>
-                <PasswordBox x:Name="PasswordTextBox" Width="250" Height="24" Margin="0, 0,0,15" KeyDown="PasswordTextBox_KeyDown"/>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15" >
-                    <CheckBox Content="Remember Me" Width="120" VerticalAlignment="Center" Checked="Remember_Checked"/>
-                    <Button Content="Forgot Passowrd?" Background="Transparent" Foreground="Blue" BorderBrush="Transparent" VerticalAlignment="Center" Click="Forgot_Password" />
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock Text="Username" Margin="0,0,0,5" FontSize="16"/>
+                    <TextBox x:Name="UsernameTextBox" 
+                             Width="400" 
+                             Height="40" 
+                             Padding="10,5" 
+                             Background="#F9F9F9"
+                             FontSize="18"
+                             KeyDown="UsernameTextBox_KeyDown"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Password" Margin="0,0,0,5" FontSize="16"/>
+                    <Grid>
+                        <PasswordBox x:Name="PasswordTextBox" 
+                             Width="400" 
+                             Height="40" 
+                             Padding="10,5" 
+                             Background="#F9F9F9"
+                             FontSize="18"
+                             Visibility="Visible"
+                                     KeyDown="PasswordTextBox_KeyDown"/>
+                        <TextBox x:Name="PasswordTextBoxVisible" 
+                             Width="400" 
+                             Height="40" 
+                             Padding="10,5" 
+                             Background="#F9F9F9"
+                             FontSize="18"
+                             Visibility="Collapsed"/>
+                        <Button x:Name="TogglePasswordButton"
+                             Width="30" Height="30"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Center"
+                             Margin="0,0,10,0"
+                             Background="Transparent"
+                             BorderBrush="{x:Null}"
+                             Click="TogglePasswordVisibility_Click">
+                            <TextBlock Text="👁️" 
+                               FontSize="18"
+                               Cursor="Hand"
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"/>
+                        </Button>
+                    </Grid>
                 </StackPanel>
 
-                <Button Content="Login" 
-                    Width="250" 
-                    Height="40"
-                    Background="#5469D4" 
-                    Foreground="White" 
-                    FontSize="16"
-                    HorizontalAlignment="Center" 
-                    BorderBrush="{x:Null}" Click="Login_Click">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <CheckBox Content="Remember Me"  
+                              Width="140" 
+                              VerticalAlignment="Center"
+                              Foreground="#333333"
+                              Cursor="Hand"
+                              FontSize="14"/>
+                    <Button Content="Forgot Password?" 
+                            Cursor="Hand"
+                            Background="Transparent" 
+                            Foreground="#5469D4" 
+                            BorderBrush="Transparent" 
+                            FontSize="14" 
+                            VerticalAlignment="Center" 
+                            Click="Forgot_Password"/>
+                </StackPanel>
+
+                <Button Content="Login"
+                        Cursor="Hand"
+                        Width="350" 
+                        Height="45"
+                        Background="#5469D4" 
+                        Foreground="White" 
+                        FontSize="16"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center" 
+                        BorderBrush="{x:Null}" 
+                        Click="Login_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="20" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="22" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15" >
-                    <TextBlock Text="Doesn't Have Account?" Width="132" VerticalAlignment="Center"/>
-                    <Button Content="Register" Background="Transparent" Foreground="Blue" BorderBrush="Transparent" VerticalAlignment="Center" Click="Register_Button" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,45,0,0">
+                    <TextBlock Text="Doesn't have an account?" VerticalAlignment="Center" Foreground="#666666" FontSize="16"/>
+                    <Button Content="Register" 
+                            Background="Transparent" 
+                            Foreground="#5469D4" 
+                            BorderBrush="Transparent" 
+                            FontWeight="Bold"
+                            VerticalAlignment="Center" 
+                            Click="Register_Button"
+                            Cursor="Hand"
+                            FontSize="16"
+                            Margin="5, 0, 0, 0"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

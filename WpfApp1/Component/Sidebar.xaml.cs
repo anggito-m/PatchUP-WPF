@@ -127,5 +127,20 @@ namespace WpfApp1.Component
         {
             NavigateToPage?.Invoke(this, "Profile");
         }
+        private void LogoutClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                "Are you sure you want to log out?",
+                "Confirm Logout",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+            // ERROR
+            if (result == MessageBoxResult.Yes)
+            {
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.Content = new Register();
+            }
+        }
+
     }
 }
