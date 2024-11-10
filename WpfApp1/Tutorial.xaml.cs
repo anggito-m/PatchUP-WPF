@@ -142,7 +142,7 @@ namespace WpfApp1
                 int selectedCategoryId = selectedCategory.Id;
                 // Hide the category grid and show the tutorial grid
                 ProductItems = await product.getAllProductAsync(selectedCategoryId);
-                MessageBox.Show($"Loaded {ProductItems.Count} products");
+                //MessageBox.Show($"Loaded {ProductItems.Count} products");
                 Category_grid.Visibility = Visibility.Collapsed;
                 Product_grid.Visibility = Visibility.Visible;
                 DataContext = this;
@@ -156,8 +156,8 @@ namespace WpfApp1
                 int selectedProductId = selectedProduct.Id;
                 // Hide the category grid and show the tutorial grid
                 TutorialItems = await tutorial.GetTutorialsAsync(selectedProductId);
-                MessageBox.Show($"Loaded {TutorialItems.Count} products");
-                MessageBox.Show($"Loaded {TutorialItems} products");
+                //MessageBox.Show($"Loaded {TutorialItems.Count} products");
+                //MessageBox.Show($"Loaded {TutorialItems} products");
 
                 Product_grid.Visibility = Visibility.Collapsed;
                 Tutorial_grid.Visibility = Visibility.Visible;
