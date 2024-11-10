@@ -31,5 +31,16 @@ namespace WpfApp1
             frame.Navigate(new Login());
             this.Content = frame;
         }
+
+        private void Button_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Frame frame = new Frame();
+                frame.Navigate(new Login());
+                this.Content = frame;
+            }
+
+        }
     }
 }

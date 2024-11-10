@@ -19,64 +19,9 @@
 
         <Grid Grid.Column="1" Margin="20">
             <StackPanel>
-                <Component:SearchBar />
+                
 
-                <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
-                    <StackPanel Background="#FFFFFF" Width="850">
-                        <TextBlock Text="Create Post" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" />
-
-                        <Border Background="#E9E9EF" CornerRadius="15" Padding="10" Margin="0,0,0,15">
-                            <TextBox Text="Write something..." Background="Transparent" BorderThickness="0" FontSize="14" Foreground="#999" FontStyle="Italic"/>
-                        </Border>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
-                                <Button Width="100" Margin="0,0,10,0" Background="#D1D2F4" BorderThickness="0">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <Image Source="/icon/image.png" Width="20" Margin="0,0,5,0"/>
-                                                    <TextBlock Text="Image" FontSize="14" FontWeight="SemiBold"/>
-                                                </StackPanel>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-
-                                <Button Width="100" Background="#D1D2F4" BorderThickness="0">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <Image Source="/icon/video.png" Width="20" Margin="0,0,5,0"/>
-                                                    <TextBlock Text="Video" FontSize="14" FontWeight="SemiBold"/>
-                                                </StackPanel>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </StackPanel>
-
-                            <Button Content="Post" Width="80" Background="#00029F" Foreground="White" FontWeight="SemiBold" Grid.Column="1">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Padding="5">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </Grid>
-                    </StackPanel>
-                </Border>
-
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="600" PanningMode="VerticalOnly">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="487" PanningMode="VerticalOnly">
                     <StackPanel>
                         <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
                             <StackPanel>

@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Npgsql;
+using static WpfApp1.Tutorial;
 
 namespace WpfApp1.Model
 {
 
-    public abstract class Tutorial
+    public abstract class tutorial
     {
         // Field privat
         private int tutorialId;
@@ -90,8 +94,8 @@ namespace WpfApp1.Model
             title = newTutorialTitle; // Memperbarui TutorialTitle
         }
 
-        // Konstruktor untuk menginisialisasi field yang wajib
-        protected Tutorial(int tutorialId, int productId, int adminId, string title, DateTime timestamp)
+        //Konstruktor untuk menginisialisasi field yang wajib
+        protected tutorial(int tutorialId, int productId, int adminId, string title, DateTime timestamp)
         {
             TutorialId = tutorialId;
             ProductId = productId;
@@ -100,12 +104,44 @@ namespace WpfApp1.Model
             Timestamp = timestamp;
         }
 
-        // Metode abstrak yang akan diimplementasikan oleh kelas turunan
+        //Metode abstrak yang akan diimplementasikan oleh kelas turunan
         public abstract void DisplayContent();
+
+        static string connectionString = Environment.GetEnvironmentVariable("connectionString");
+        public static async Task<ObservableCollection<TutorialItem>> GetTutorialsAsync(int productId)
+        {
+            ObservableCollection<TutorialItem> items = new ObservableCollection<TutorialItem>();
+            string query = "SELECT * FROM tutorial WHERE product_id = @Product_Id;"; 
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Product_Id", productId);
+                    NpgsqlDataReader reader =await command.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        items.Add(new TutorialItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_article"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_type"].ToString()));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return items;
+        }
     }
 
-    public class VideoTutorial : Tutorial
+    public class VideoTutorial : tutorial
     {
+
         public VideoTutorial(int tutorialId, int productId, int adminId, string title, DateTime timestamp, string videoUrl)
             : base(tutorialId, productId, adminId, title, timestamp)
         {
@@ -118,7 +154,7 @@ namespace WpfApp1.Model
         }
     }
 
-    public class ArticleTutorial : Tutorial
+    public class ArticleTutorial : tutorial
     {
         public ArticleTutorial(int tutorialId, int productId, int adminId, string title, DateTime timestamp, string article)
             : base(tutorialId, productId, adminId, title, timestamp)

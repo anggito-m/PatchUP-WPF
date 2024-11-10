@@ -26,6 +26,7 @@ namespace WpfApp1
         public Login()
         {
             InitializeComponent();
+            UsernameTextBox.Focus();
         }
 
         private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -95,6 +96,30 @@ namespace WpfApp1
         private void Remember_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void UsernameTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if(e.KeyboardDevice.IsKeyDown(Key.Enter))
+            {
+                PasswordTextBox.Focus();
+            }
+        }
+
+        private void UsernameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                PasswordTextBox.Focus();
+            }
+        }
+
+        private void PasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Login_Click(sender, e);
+            }
         }
     }
 }

@@ -21,9 +21,9 @@
             <StackPanel>
                 <Component:SearchBar/>
 
-                <Grid Margin="0, 20, 0, 0">
+                <Grid Margin="0, 20, 0, 0" Name="Category_grid">
                     <ScrollViewer VerticalScrollBarVisibility="Visible" Height="680">
-                        <ItemsControl ItemsSource="{Binding TutorialItems}">
+                        <ItemsControl ItemsSource="{Binding CategoryItems}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <UniformGrid Rows="3" Columns="3"/>
@@ -34,11 +34,51 @@
                                     <Component:TutorialCard 
                                         Title="{Binding Title}" 
                                         Description="{Binding Description}" 
-                                        Icon="{Binding Icon}"/>
+                                        Icon="{Binding Icon}"
+                                        MouseLeftButtonDown="TutorialCard_GotMouseCapture"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
+                </Grid>
+                <Grid Margin="0, 20, 0, 0" Name="Product_grid">
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" Height="680">
+                        <ItemsControl ItemsSource="{Binding ProductItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="3" Columns="3"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Component:TutorialCard 
+                        Title="{Binding Name}" 
+                        Description="{Binding Description}" 
+                        Icon="{Binding Icon}"
+                                        MouseLeftButtonDown="TutorialCard_MouseLeftButtonDown"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,0,0,0" Name="Tutorial_grid" Visibility="Hidden">
+                    <StackPanel >
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="680" PanningMode="VerticalOnly">
+                            <StackPanel>
+                                <ItemsControl ItemsSource="{Binding TutorialItems}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Component:PostCard 
+                                            PostTitle="{Binding Title}" 
+                                            PostDescription="{Binding Article}" 
+                                            SenderIcon="{Binding Icon}"
+                                            />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
                 </Grid>
             </StackPanel>
         </Grid>

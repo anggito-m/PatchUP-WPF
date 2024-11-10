@@ -54,6 +54,7 @@
                         FontSize="16"
                         HorizontalAlignment="Left" 
                         BorderBrush="{x:Null}" Click="Button_Click"
+                        IsDefault="true"
                         >
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
