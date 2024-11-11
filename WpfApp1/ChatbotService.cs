@@ -40,7 +40,7 @@ namespace WpfApp1
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
                     //var jsonResponse = JObject.Parse(responseString);
-                    MessageBox.Show(responseString);
+                    //MessageBox.Show(responseString);
                     JObject jsonResponse = new JObject();
                     jsonResponse = JObject.Parse(responseString);
 
@@ -51,7 +51,7 @@ namespace WpfApp1
 
                     // Assuming the response structure has a "content" field
                     //var resultText = jsonResponse["result"]?.ToString();
-                    MessageBox.Show(resultText);
+                    //MessageBox.Show(resultText);
                     return resultText ?? "No response content available.";
                 }
                 else
