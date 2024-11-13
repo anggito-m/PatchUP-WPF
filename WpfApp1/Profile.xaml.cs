@@ -26,6 +26,8 @@ namespace WpfApp1
         public Profile()
         {
             InitializeComponent();
+            string currentUsername = WpfApp1.Model.Session.Username;
+            LoadProfile(currentUsername);
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -88,6 +90,49 @@ namespace WpfApp1
                 }
             }
         }
+        private void LoadProfile(string username)
+        {
+            string query = @"
+                SELECT name,username, email, phone, bio
+                FROM ""user""
+                WHERE username = @username;
+            ";
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@username", username);
+
+                    connection.Open();
+                    using (NpgsqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            FullNameTextBox.Text = reader["name"]?.ToString() ?? string.Empty;
+                            UserNameTextBox.Text = reader["username"]?.ToString() ?? string.Empty;
+                            EmailTextBox.Text = reader["email"]?.ToString() ?? string.Empty;
+                            PhoneTextBox.Text = reader["phone"]?.ToString() ?? string.Empty;
+                            BioTextBox.Text = reader["bio"]?.ToString() ?? string.Empty;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data profil tidak ditemukan.", "Data Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Terjadi kesalahan saat mengambil data profil: " + ex.Message, "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             FullNameTextBox.Text = string.Empty;

@@ -33,7 +33,6 @@ namespace WpfApp1
         {
 
         }
-
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameTextBox.Text;
@@ -45,9 +44,9 @@ namespace WpfApp1
                     int result = user.Instance.Login(username, password);
                     if (result == 1)
                     {
+                        WpfApp1.Model.Session.Username = username;
+
                         MessageBox.Show("Login Berhasil");
-                        // close this window
-                        //open home window
                         HomeWindow main = new HomeWindow();
                         main.Show();
                         Window.GetWindow(this).Close();
@@ -60,7 +59,6 @@ namespace WpfApp1
                     {
                         MessageBox.Show("Username tidak ditemukan");
                     }
-                    
                 }
                 else
                 {
@@ -72,6 +70,7 @@ namespace WpfApp1
                 MessageBox.Show("Please enter your Username");
             }
         }
+
 
         private void Register_Button(object sender, RoutedEventArgs e)
         {
