@@ -135,10 +135,13 @@ namespace WpfApp1.Component
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
             // ERROR
-            if (result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.Yes) 
             {
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-                mainWindow.Content = new Register();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Content = new Login();
+                mainWindow.Show();
+                Window.GetWindow(this).Close();
+                
             }
         }
 

@@ -52,6 +52,7 @@ namespace WpfApp1
             else
             {
                 user.Instance.Register(UsernameTextBox.Text, EmailTextBox.Text, NameTextBox.Text, PasswordTextBox.Password);
+                
             }
         }
 
@@ -74,7 +75,9 @@ namespace WpfApp1
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Login());
+            Frame frame = new Frame();
+            frame.Navigate(new Login());
+            this.Content = frame;
         }
 
         private bool isPasswordVisible = false;

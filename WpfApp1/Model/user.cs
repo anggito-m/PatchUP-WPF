@@ -45,7 +45,7 @@ namespace WpfApp1.Model
                     if (reader.HasRows)
                     {
                         reader.Read(); // Baca baris pertama (harusnya hanya satu baris)
-                        string realPassword = System.Text.Encoding.UTF8.GetString((byte[])reader["password"]);
+                        string realPassword = System.Text.Encoding.UTF32.GetString((byte[])reader["password"]);
 
 
                         // Sesuaikan dengan metode keamanan yang sesuai (contoh sederhana)
@@ -87,15 +87,14 @@ namespace WpfApp1.Model
                     command.Parameters.AddWithValue("_username", username);
                     command.Parameters.AddWithValue("_email", email);
                     command.Parameters.AddWithValue("_name", name);
-                    byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
+                    byte[] passwordBytes = System.Text.Encoding.UTF32.GetBytes(password);
                     command.Parameters.AddWithValue("_password", passwordBytes);
                     connection.Open();
                     int result = command.ExecuteNonQuery();
-                    if (result ==1)
+                    if (result > 0)
                     { 
-                        MessageBox.Show(" Registrasi Berhasil, Silahkan menuju halaman login");
+                        MessageBox.Show("Registrasi Berhasil, Silahkan menuju halaman login");
                     }
-                   
                 }
                 catch (Exception ex)
                 {
