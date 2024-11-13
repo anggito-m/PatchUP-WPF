@@ -9,6 +9,91 @@
       Title="Register">
 
     <Grid Background="#FFFFFF">
+        <Popup Name="TermsPopup" StaysOpen="False" Placement="Center" IsOpen="False">
+            <Border Background="White" CornerRadius="15" Padding="20" BorderBrush="#4143E3" BorderThickness="2" Width="500">
+                <StackPanel>
+                    <TextBlock Text="Terms and Agreement" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       Foreground="#4143E3" 
+                       TextAlignment="Center" 
+                       Margin="0,0,0,15"/>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Height="200" Margin="0,0,0,15">
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="1. Acceptance of Terms" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="By accessing and using PatchUP, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our application."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="2. User Responsibilities" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="As a user of PatchUP, you agree to:"/>
+                            <LineBreak/>
+                            <Run Text="• Use the application for its intended purpose, namely connecting with repair service providers and accessing repair resources."/>
+                            <LineBreak/>
+                            <Run Text="• Provide accurate information during the registration process."/>
+                            <LineBreak/>
+                            <Run Text="• Respect other users, including service providers, and engage in courteous and honest communication."/>
+                            <LineBreak/>
+                            <Run Text="• Use the application responsibly and refrain from any actions that could harm the platform or its users."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="3. Privacy" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="Your privacy is important to us. By using PatchUP, you consent to our collection, use, and storage of personal information as outlined in our Privacy Policy. We are committed to keeping your information secure and will not share it with third parties without your consent."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="4. Service Limitations" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="PatchUP provides resources and connects users to repair services, but does not guarantee the quality, safety, or legality of the services provided by third parties. We are not responsible for any issues arising from third-party services or transactions."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="5. Intellectual Property" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="All content, logos, trademarks, and data on PatchUP are the property of PatchUP or its licensors. You agree not to copy, distribute, modify, or reverse-engineer any part of the application without prior written consent."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="6. Liability Limitation" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="PatchUP is provided 'as is' without warranties of any kind. We are not liable for any damages, direct or indirect, resulting from your use of the application, including but not limited to data loss, service interruptions, or disputes with third-party providers."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="7. Modifications to Terms" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately upon posting in the application. Your continued use of PatchUP constitutes acceptance of the updated terms."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="8. Governing Law" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="These terms are governed by the laws of [Your Jurisdiction]. Any disputes arising from these terms or your use of the application will be resolved in the courts of [Your Jurisdiction]."/>
+                            <LineBreak/><LineBreak/>
+
+                            <Run Text="9. Contact Information" FontWeight="Bold"/>
+                            <LineBreak/>
+                            <Run Text="For questions or concerns about these terms, please contact us at [Your Contact Email]."/>
+                        </TextBlock>
+                    </ScrollViewer>
+                    <Button Content="Close"
+                    Width="100"
+                    Height="30"
+                    HorizontalAlignment="Center"
+                    Background="#5469D4" 
+                    Foreground="White"
+                    FontWeight="Bold"
+                    Click="CloseTermsPopup_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+
         <Button Content="Back to Login Page"
                 Cursor="Hand"
                 Width="200" 

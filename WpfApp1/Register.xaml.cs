@@ -64,8 +64,14 @@ namespace WpfApp1
 
         private void Terms_Click(object sender, RoutedEventArgs e)
         {
-
+            TermsPopup.IsOpen = true;
         }
+
+        private void CloseTermsPopup_Click(object sender, RoutedEventArgs e)
+        {
+            TermsPopup.IsOpen = false;
+        }
+
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Login());
