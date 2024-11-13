@@ -23,7 +23,10 @@
 
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="487" PanningMode="VerticalOnly">
                     <StackPanel>
-                        <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
+                        <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="3" Opacity="0.4"/>
+                            </Border.Effect>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                                     <Image Source="/icon/profile.png" Width="40" Height="40" Margin="0,0,10,0">
