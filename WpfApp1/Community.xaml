@@ -19,7 +19,7 @@
 
         <Grid Grid.Column="1" Margin="20">
             <StackPanel>
-                
+                <Component:SearchBar Margin="0, 20"/>
 
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="487" PanningMode="VerticalOnly">
                     <StackPanel>
