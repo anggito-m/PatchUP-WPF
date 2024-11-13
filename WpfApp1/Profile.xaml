@@ -34,8 +34,6 @@
                                 <Image Source="/icon/profile.png" Width="120" Height="120" ClipToBounds="True" Stretch="UniformToFill" />
                             </StackPanel>
                         </Border>
-                        <TextBlock Text="Aisha Zeyn" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center"/>
-                        <TextBlock Text="aisha@gmail.com" FontSize="14" Foreground="#666" HorizontalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="10,20,10,0" Grid.ColumnSpan="2">
                         <TextBlock Text="My Profile!" FontSize="20" FontWeight="Bold"/>
