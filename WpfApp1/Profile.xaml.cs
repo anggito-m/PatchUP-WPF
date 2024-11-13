@@ -28,6 +28,13 @@ namespace WpfApp1
             InitializeComponent();
             string currentUsername = WpfApp1.Model.Session.Username;
             LoadProfile(currentUsername);
+            sidebar.NavigateToPage += Sidebar_NavigateToPage;
+        }
+        private void Sidebar_NavigateToPage(object sender, string pageName)
+        {
+            Frame frame = new Frame();
+            frame.Navigate(sidebar.Navigate(pageName));
+            this.Content = frame;
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
