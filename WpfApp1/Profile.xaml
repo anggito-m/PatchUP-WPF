@@ -30,10 +30,15 @@
 
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
                         <Border Width="160" Height="160" CornerRadius="80" Background="White" HorizontalAlignment="Center" Padding="10" Margin="0, 0, 0, -20">
-                            <StackPanel>
-                                <Image Source="/icon/profile.png" Width="120" Height="120" ClipToBounds="True" Stretch="UniformToFill" />
-                            </StackPanel>
+                            <Grid>
+                                <Image x:Name="ProfileImage" Source="/icon/profile.png" Width="140" Height="140" Stretch="UniformToFill" MouseDown="ProfileImage_MouseDown">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="70,70" RadiusX="70" RadiusY="70"/>
+                                    </Image.Clip>
+                                </Image>
+                            </Grid>
                         </Border>
+                        <TextBlock Text="Klik untuk mengganti foto" FontSize="12" Foreground="#999" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,15,0,0"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="10,20,10,0" Grid.ColumnSpan="2">
                         <TextBlock Text="My Profile!" FontSize="20" FontWeight="Bold"/>

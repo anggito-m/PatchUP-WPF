@@ -53,7 +53,8 @@ namespace WpfApp1
                 SET name = @name,
                     email = @email,
                     phone = @phone,
-                    bio = @bio
+                    bio = @bio,
+                    avatar = @avatar
                 WHERE username = @username;
             ";
 
@@ -67,6 +68,7 @@ namespace WpfApp1
                     command.Parameters.AddWithValue("@phone", phone ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@email", email);
                     command.Parameters.AddWithValue("@bio", bio ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@avatar", profileImageData ?? (object)DBNull.Value);
 
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
@@ -90,10 +92,11 @@ namespace WpfApp1
                 }
             }
         }
+
         private void LoadProfile(string username)
         {
             string query = @"
-                SELECT name,username, email, phone, bio
+                SELECT name, username, email, phone, bio, avatar
                 FROM ""user""
                 WHERE username = @username;
             ";
@@ -115,6 +118,28 @@ namespace WpfApp1
                             EmailTextBox.Text = reader["email"]?.ToString() ?? string.Empty;
                             PhoneTextBox.Text = reader["phone"]?.ToString() ?? string.Empty;
                             BioTextBox.Text = reader["bio"]?.ToString() ?? string.Empty;
+
+                            // Mengambil avatar
+                            if (reader["avatar"] != DBNull.Value)
+                            {
+                                byte[] imageData = (byte[])reader["avatar"];
+                                profileImageData = imageData;
+
+                                BitmapImage bitmap = new BitmapImage();
+                                using (var stream = new System.IO.MemoryStream(imageData))
+                                {
+                                    bitmap.BeginInit();
+                                    bitmap.StreamSource = stream;
+                                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                                    bitmap.EndInit();
+                                }
+                                ProfileImage.Source = bitmap;
+                            }
+                            else
+                            {
+                                // Menggunakan gambar default jika avatar kosong
+                                ProfileImage.Source = new BitmapImage(new Uri("/icon/profile.png", UriKind.Relative));
+                            }
                         }
                         else
                         {
@@ -141,5 +166,36 @@ namespace WpfApp1
             EmailTextBox.Text = string.Empty;
             BioTextBox.Text = string.Empty;
         }
+
+        private byte[]? profileImageData;
+
+        private void ProfileImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+
+                try
+                {
+                    profileImageData = System.IO.File.ReadAllBytes(filePath);
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(filePath);
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+
+                    ProfileImage.Source = bitmap;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Terjadi kesalahan saat mengupload gambar: " + ex.Message, "Upload Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
     }
 }
