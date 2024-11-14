@@ -139,8 +139,13 @@ namespace WpfApp1.Component
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Content = new Login();
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window != mainWindow)
+                        window.Close();
+                }
                 mainWindow.Show();
-                Window.GetWindow(this).Close();
+                Window.GetWindow(this)?.Close();
                 
             }
         }

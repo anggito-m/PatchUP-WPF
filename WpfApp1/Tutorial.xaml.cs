@@ -120,8 +120,9 @@ namespace WpfApp1
             public int AdminId { get; set; }
             public string TutorialType { get; set; }
             public string Icon { get; set; }    
+            public BitmapImage Bitmap { get; set; }
 
-            public TutorialItem(int id, string title, string videoUrl, string article, DateTime timestamp, int productid, int adminid, string tutorialType)
+            public TutorialItem(int id, string title, string videoUrl, string article, DateTime timestamp, int productid, int adminid, string tutorialType, BitmapImage bitmap)
             {
                 Id = id;
                 Title = title;
@@ -132,6 +133,8 @@ namespace WpfApp1
                 AdminId = adminid;
                 TutorialType = tutorialType;
                 Icon = "../icon/profile.png";
+                Bitmap = tutorial.LoadThumbnail("https://www.youtube.com/watch?v=dv22LbkM22A");
+                
             }
         }
 

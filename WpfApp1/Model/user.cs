@@ -45,7 +45,7 @@ namespace WpfApp1.Model
                     if (reader.HasRows)
                     {
                         reader.Read(); // Baca baris pertama (harusnya hanya satu baris)
-                        string realPassword = System.Text.Encoding.UTF32.GetString((byte[])reader["password"]);
+                        string realPassword = System.Text.Encoding.Unicode.GetString((byte[])reader["password"]);
 
 
                         // Sesuaikan dengan metode keamanan yang sesuai (contoh sederhana)
@@ -76,7 +76,7 @@ namespace WpfApp1.Model
                 }
             }
         }
-        public void Register(string username, string email, string name, string password)
+        public bool Register(string username, string email, string name, string password)
         {
             string query = "SELECT \"user_insert\"(@_name, @_email, @_password, @_username);";
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
@@ -87,18 +87,23 @@ namespace WpfApp1.Model
                     command.Parameters.AddWithValue("_username", username);
                     command.Parameters.AddWithValue("_email", email);
                     command.Parameters.AddWithValue("_name", name);
-                    byte[] passwordBytes = System.Text.Encoding.UTF32.GetBytes(password);
+                    byte[] passwordBytes = System.Text.Encoding.Unicode.GetBytes(password);
                     command.Parameters.AddWithValue("_password", passwordBytes);
                     connection.Open();
                     int result = command.ExecuteNonQuery();
-                    if (result > 0)
-                    { 
-                        MessageBox.Show("Registrasi Berhasil, Silahkan menuju halaman login");
+                    if (result > 0 || result == -1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Registrasi Gagal: " + ex.Message);
+                    return false;
                 }
                 finally
                 {

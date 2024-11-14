@@ -51,8 +51,11 @@ namespace WpfApp1
             }
             else
             {
-                user.Instance.Register(UsernameTextBox.Text, EmailTextBox.Text, NameTextBox.Text, PasswordTextBox.Password);
-                
+                bool isSuccess = user.Instance.Register(UsernameTextBox.Text, EmailTextBox.Text, NameTextBox.Text, PasswordTextBox.Password);
+                if (isSuccess == true)
+                {
+                    MessageBox.Show("Registrasi Berhasil, Silahkan login");
+                }
             }
         }
 

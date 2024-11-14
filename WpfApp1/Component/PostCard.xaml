@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignWidth="910">
     <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
@@ -19,9 +20,33 @@
                 </StackPanel>
             </StackPanel>
 
-            <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10">
-                <TextBlock Text="Image/Video Preview" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#666" FontSize="14"/>
+            <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid>
+                    <!-- Background Image -->
+                    <Image Source="{Binding PostImage, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               Stretch="UniformToFill"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+
+                    <!-- Wrapper Grid for Play Icon with Drop Shadow Effect -->
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.Effect>
+                            <DropShadowEffect Color="Black"
+                                  BlurRadius="10"
+                                  ShadowDepth="2"
+                                  Opacity="0.5"/>
+                        </Grid.Effect>
+
+                        <!-- Play Icon -->
+                        <iconPacks:PackIconMaterial Kind="PlayCircleOutline"
+                                        Width="100" Height="Auto"
+                                        Foreground="White"
+                                        Opacity="0.8"/>
+                    </Grid>
+                </Grid>
             </Border>
+
+
             <TextBlock Text="{Binding PostTitle, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="18" FontWeight="Bold" Foreground="#32324D" Margin="0, 0, 0, 5"/>
 
             <TextBlock Text="{Binding PostDescription, RelativeSource={RelativeSource AncestorType=UserControl}}" 

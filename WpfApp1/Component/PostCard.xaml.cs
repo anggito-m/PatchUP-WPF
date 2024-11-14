@@ -50,5 +50,14 @@ namespace WpfApp1.Component
 
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("SenderIcon", typeof(ImageSource), typeof(PostCard), new PropertyMetadata(null));
+
+        public ImageSource PostImage
+        {
+            get => (ImageSource)GetValue(ImageProperty);
+            set => SetValue(ImageProperty, value);
+        }
+
+        public static readonly DependencyProperty ImageProperty =
+            DependencyProperty.Register("PostImage", typeof(BitmapImage), typeof(PostCard), new PropertyMetadata(null));
     }
 }

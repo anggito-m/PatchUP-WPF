@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using Npgsql;
 using static WpfApp1.Tutorial;
 
@@ -122,7 +125,8 @@ namespace WpfApp1.Model
                     NpgsqlDataReader reader =await command.ExecuteReaderAsync();
                     while (await reader.ReadAsync())
                     {
-                        items.Add(new TutorialItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_article"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_type"].ToString()));
+
+                        items.Add(new TutorialItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_article"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_type"].ToString(), LoadThumbnail(reader["tutorial_video_url"].ToString())));
                     }
                 }
                 catch (Exception ex)
@@ -137,7 +141,37 @@ namespace WpfApp1.Model
             }
             return items;
         }
+
+
+        public static BitmapImage LoadThumbnail(string videoUrl)
+    {
+        // Ekstrak video ID dari URL
+        string videoId = ExtractVideoId(videoUrl);
+        string thumbnailUrl = $"https://img.youtube.com/vi/{videoId}/hqdefault.jpg";
+
+        // Buat WebClient untuk mengunduh gambar
+        using (WebClient webClient = new WebClient())
+        {
+            byte[] imageBytes = webClient.DownloadData(thumbnailUrl);
+            BitmapImage bitmap = new BitmapImage();
+            using (var stream = new MemoryStream(imageBytes))
+            {
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.StreamSource = stream;
+                bitmap.EndInit();
+            }
+            return bitmap;
+        }
     }
+
+    private static string ExtractVideoId(string url)
+    {
+        var uri = new Uri(url);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        return query["v"];
+    }
+}
 
     public class VideoTutorial : tutorial
     {
