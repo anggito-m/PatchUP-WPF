@@ -21,8 +21,26 @@
             <StackPanel>
                 <Component:SearchBar Margin="0, 20"/>
 
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="487" PanningMode="VerticalOnly">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="649" PanningMode="VerticalOnly">
                     <StackPanel>
+                        <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="3" Opacity="0.4"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <TextBlock Text="Create Post" FontWeight="Bold" FontSize="18" Foreground="#32324D" Margin="0,0,0,10"/>
+                                <TextBox Height="40" Background="#F5F5F5" Foreground="#666" FontSize="14" Padding="10" Text="Write something..." BorderThickness="0" Margin="0,0,0,10"/>
+
+                                <!-- Image and Video Buttons -->
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+                                    <Button Content="Image" Width="80" Height="35" Background="#FFFFFF" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0,0,10,0"/>
+                                    <Button Content="Video" Width="80" Height="35" Background="#FFFFFF" BorderBrush="#D6E0EF" BorderThickness="1"/>
+                                </StackPanel>
+
+                                <!-- Post Button -->
+                                <Button Content="Post" Width="100" Height="40" Background="#2D2BC8" Foreground="White" BorderThickness="0" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Border>
                         <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15">
                             <Border.Effect>
                                 <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="3" Opacity="0.4"/>
