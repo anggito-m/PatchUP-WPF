@@ -1,0 +1,26 @@
+﻿<Page x:Class="WpfApp1.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      xmlns:Component="clr-namespace:WpfApp1.Component"
+      mc:Ignorable="d" 
+      d:DesignHeight="780" d:DesignWidth="1200"
+      Title="Playlist">
+
+    <Grid Background="#FFFFFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Component:Sidebar x:Name="sidebar"/>
+
+        <Grid Grid.Column="1" Margin="20">
+            <StackPanel>
+                <Component:SearchBar/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
