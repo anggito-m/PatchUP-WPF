@@ -114,27 +114,50 @@ namespace WpfApp1
             public int Id { get; set; }
             public string Title { get; set; }
             public string VideoUrl { get; set; }
-            public string Article { get; set; }
+            public string Description { get; set; }
             public DateTime Timestamp { get; set; }
             public int ProductId { get; set; }
             public int AdminId { get; set; }
-            public string TutorialType { get; set; }
+            public string Article { get; set; }
             public string Icon { get; set; }    
             public BitmapImage Bitmap { get; set; }
-
-            public TutorialItem(int id, string title, string videoUrl, string article, DateTime timestamp, int productid, int adminid, string tutorialType, BitmapImage bitmap)
+            public string AdminName { get; set; }
+            public string DaysSincePost { get; set; }
+            public TutorialItem(int id, string title, string videoUrl, string description, DateTime timestamp, int productid, int adminid, string article)
             {
                 Id = id;
                 Title = title;
                 VideoUrl = videoUrl;
-                Article = article;
+                Description = description;
                 Timestamp = timestamp;
+                DaysSincePost = CountDays(timestamp);
                 ProductId = productid;
                 AdminId = adminid;
-                TutorialType = tutorialType;
+                AdminName = admin.Instance.GetAdminName(AdminId);
+                Article = article;
                 Icon = "../icon/profile.png";
-                Bitmap = tutorial.LoadThumbnail("https://www.youtube.com/watch?v=dv22LbkM22A");
+                Bitmap = tutorial.LoadThumbnail(videoUrl);
                 
+            }
+            private string CountDays(DateTime timestamp)
+            {
+                TimeSpan timeSincePost = DateTime.Now - timestamp;
+                if (timeSincePost.Days == 0 && timeSincePost.Hours != 0)
+                {
+                    return timeSincePost.Hours.ToString()+ " hours ago";
+                }
+                else if (timeSincePost.Days == 0 && timeSincePost.Hours == 0 && timeSincePost.Minutes != 0 )
+                {
+                    return timeSincePost.Minutes.ToString() + " minutes ago";
+                }
+                else if (timeSincePost.Days == 0 && timeSincePost.Hours == 0 && timeSincePost.Minutes == 0)
+                {
+                    return timeSincePost.Seconds.ToString() + " seconds ago";
+                }
+                else
+                {
+                    return timeSincePost.Days.ToString() + " days ago";
+                }
             }
         }
 

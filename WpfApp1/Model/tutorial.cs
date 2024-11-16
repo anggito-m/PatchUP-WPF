@@ -126,7 +126,7 @@ namespace WpfApp1.Model
                     while (await reader.ReadAsync())
                     {
 
-                        items.Add(new TutorialItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_article"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_type"].ToString(), LoadThumbnail(reader["tutorial_video_url"].ToString())));
+                        items.Add(new TutorialItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_description"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_article"].ToString()));
                     }
                 }
                 catch (Exception ex)

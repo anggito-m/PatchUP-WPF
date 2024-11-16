@@ -19,7 +19,7 @@ namespace WpfApp1.Model
         public string Password { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        private user()
+        protected user()
         {
 
         }
@@ -112,5 +112,49 @@ namespace WpfApp1.Model
             }
         }
     }
+    //Buat turunan class user bernama admin
+    public class admin : user
+    {
+        private static admin _instance;
+        public static admin Instance => _instance ??= new admin();
+        private admin()
+        {
 
+        }
+        // Create Method to get admin name given admin ID
+        string connectionString = Environment.GetEnvironmentVariable("connectionString");
+
+        public string GetAdminName(int adminId)
+        {
+            string query = "SELECT name FROM \"ADMIN\" WHERE admin_id = @Admin_Id";
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Admin_Id", adminId);
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        return reader["name"].ToString();
+                    }
+                    else
+                    {
+                        return "Admin not found";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return "Error";
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+    }
 }

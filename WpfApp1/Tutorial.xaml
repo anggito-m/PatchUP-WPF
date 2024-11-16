@@ -68,10 +68,12 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Component:PostCard 
+                                            AdminName="{Binding AdminName}"
                                             PostTitle="{Binding Title}" 
-                                            PostDescription="{Binding Article}" 
+                                            PostDescription="{Binding Description}" 
                                             SenderIcon="{Binding Icon}"
                                             PostImage="{Binding Bitmap}"
+                                            DaySincePost="{Binding DaysSincePost}"
                                             />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

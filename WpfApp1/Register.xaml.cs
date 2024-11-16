@@ -25,6 +25,7 @@ namespace WpfApp1
         public Register()
         {
             InitializeComponent();
+            NameTextBox.Focus();
         }
         private void UsernameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -121,6 +122,40 @@ namespace WpfApp1
                 isConfirmPasswordVisible = true;
             }
         }
-
+        private void NameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UsernameTextBox.Focus();
+            }
+        }
+        private void UsernameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                EmailTextBox.Focus();
+            }
+        }
+        private void EmailTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                PasswordTextBox.Focus();
+            }
+        }
+        private void PasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ConfirmPasswordTextBox.Focus();
+            }
+        }
+        private void ConfirmPasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TermsPopup.IsOpen = true;
+            }
+        }
     }
 }

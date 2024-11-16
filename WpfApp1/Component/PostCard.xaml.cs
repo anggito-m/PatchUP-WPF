@@ -24,6 +24,24 @@ namespace WpfApp1.Component
         {
             InitializeComponent();
         }
+        public string AdminName
+        {
+            get => (string)GetValue(AdminNameProperty);
+            set => SetValue(AdminNameProperty, value);
+        }
+        //days ago
+
+        public static readonly DependencyProperty AdminNameProperty =
+            DependencyProperty.Register("AdminName", typeof(string), typeof(PostCard), new PropertyMetadata(string.Empty));
+        public string DaySincePost
+        {
+            get => GetValue(DaySincePostProperty).ToString();
+            set => SetValue(DaySincePostProperty, value);
+        }
+        //days ago
+
+        public static readonly DependencyProperty DaySincePostProperty =
+            DependencyProperty.Register("DaySincePost", typeof(string), typeof(PostCard), new PropertyMetadata(string.Empty));
         public string PostTitle
         {
             get => (string)GetValue(TitleProperty);

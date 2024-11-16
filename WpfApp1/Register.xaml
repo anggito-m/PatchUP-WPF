@@ -145,11 +145,11 @@
                    HorizontalAlignment="Center"/>
                 <StackPanel Margin="0, 10, 0, 0" Width="400">
                     <TextBlock Text="Name" Margin="0,0,0,5" FontSize="16"/>
-                    <TextBox x:Name="NameTextBox" Height="32" Margin="0,0,0,5" TextChanged="UsernameTextBox_TextChanged" Width="400" FontSize="16" Padding="3" />
+                    <TextBox x:Name="NameTextBox" Height="32" Margin="0,0,0,5" KeyDown="NameTextBox_KeyDown" TextChanged="UsernameTextBox_TextChanged" Width="400" FontSize="16" Padding="3" />
                     <TextBlock Text="Username" Margin="0,0,0,5" FontSize="16"/>
-                    <TextBox x:Name="UsernameTextBox" Height="32" Margin="0,0,0,5" TextChanged="UsernameTextBox_TextChanged" Width="400" FontSize="16" Padding="3" />
+                    <TextBox x:Name="UsernameTextBox" Height="32" Margin="0,0,0,5" KeyDown="UsernameTextBox_KeyDown" TextChanged="UsernameTextBox_TextChanged" Width="400" FontSize="16" Padding="3" />
                     <TextBlock Text="E-mail" Margin="0,0,0,5" FontSize="16"/>
-                    <TextBox x:Name="EmailTextBox" Height="32" Margin="0,0,0,5" TextChanged="UsernameTextBox_TextChanged" Width="400" FontSize="16" Padding="3" />
+                    <TextBox x:Name="EmailTextBox" Height="32" Margin="0,0,0,5" KeyDown="EmailTextBox_KeyDown" TextChanged="UsernameTextBox_TextChanged" Width="400" FontSize="16" Padding="3" />
                     <StackPanel Margin="0,0,0,5">
                         <TextBlock Text="Password" Margin="0,0,0,5" FontSize="16"/>
                         <Grid>
@@ -160,7 +160,8 @@
                                  Padding="3"
                                  Background="#FFFFFF"
                                  VerticalAlignment="Center"
-                                 Visibility="Visible"/>
+                                 Visibility="Visible"
+                                 KeyDown="PasswordTextBox_KeyDown"/>
                             <TextBox x:Name="PasswordTextBoxVisible" 
                                  Width="400" 
                                  Height="32" 
@@ -192,7 +193,8 @@
                                          Padding="3"
                                          Background="#FFFFFF"
                                          VerticalAlignment="Center"
-                                         Visibility="Visible"/>
+                                         Visibility="Visible"
+                                         KeyDown="ConfirmPasswordTextBox_KeyDown"/>
                             <TextBox x:Name="ConfirmPasswordTextBoxVisible" 
                                          Width="400" 
                                          Height="32" 

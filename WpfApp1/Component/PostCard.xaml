@@ -15,8 +15,8 @@
                     </Image.Clip>
                 </Image>
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Account Name" FontWeight="Bold" FontSize="16"/>
-                    <TextBlock Text="10 days ago" Foreground="#999" FontSize="12"/>
+                    <TextBlock Text="{Binding AdminName, RelativeSource={RelativeSource AncestorType=UserControl}}" FontWeight="Bold" FontSize="16"/>
+                    <TextBlock Text="{Binding DaySincePost, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="#999" FontSize="12"/>
                 </StackPanel>
             </StackPanel>
 

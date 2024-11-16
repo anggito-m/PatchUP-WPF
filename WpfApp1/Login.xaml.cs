@@ -99,7 +99,9 @@ namespace WpfApp1
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
             // Navigasi kembali ke WelcomePage
-            this.NavigationService.Navigate(new Welcome());
+            Frame frame = new Frame();
+            frame.Navigate(new Welcome());
+            this.Content = frame;
         }
 
         private bool isPasswordVisible = false;
@@ -137,6 +139,7 @@ namespace WpfApp1
             {
                 PasswordTextBox.Focus();
             }
+
         }
 
         private void PasswordTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -145,6 +148,7 @@ namespace WpfApp1
             {
                 Login_Click(sender, e);
             }
+           
         }
     }
 }
