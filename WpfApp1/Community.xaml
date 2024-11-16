@@ -19,7 +19,7 @@
 
         <Grid Grid.Column="1" Margin="20">
             <StackPanel>
-                <Component:SearchBar Margin="0, 20"/>
+                <Component:SearchBar Margin="0, 20" Loaded="SearchBar_Loaded"/>
 
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="649" PanningMode="VerticalOnly">
                     <StackPanel>
@@ -33,12 +33,74 @@
 
                                 <!-- Image and Video Buttons -->
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
-                                    <Button Content="Image" Width="80" Height="35" Background="#FFFFFF" BorderBrush="#D6E0EF" BorderThickness="1" Margin="0,0,10,0"/>
-                                    <Button Content="Video" Width="80" Height="35" Background="#FFFFFF" BorderBrush="#D6E0EF" BorderThickness="1"/>
+                                    <!-- Image Button -->
+                                    <Button Width="120" Height="40" Background="White" BorderBrush="#D6E0EF" BorderThickness="1" Cursor="Hand" Padding="10">
+                                        <StackPanel Orientation="Horizontal">
+                                            <!-- Icon for Image Button -->
+                                            <Image Source="/icon/image.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Image" FontWeight="SemiBold" Foreground="#4A4A4A" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Button.Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+
+                                    <!-- Video Button -->
+                                    <Button Width="120" Height="40" Background="White" BorderBrush="#D6E0EF" BorderThickness="1" Cursor="Hand" Padding="10" Margin="10,0,0,0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <!-- Icon for Video Button -->
+                                            <Image Source="/icon/video.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Video" FontWeight="SemiBold" Foreground="#4A4A4A" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Button.Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                 </StackPanel>
 
                                 <!-- Post Button -->
-                                <Button Content="Post" Width="100" Height="40" Background="#2D2BC8" Foreground="White" BorderThickness="0" HorizontalAlignment="Right"/>
+                                <Button Width="120" Height="40" Background="#2D2BC8" Foreground="White" BorderThickness="0" HorizontalAlignment="Right" Padding="10" Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!-- Icon on the left -->
+                                        <Image Source="/icon/pen.png" Width="20" Height="20" Margin="0,0,5,0"/>
+                                        <!-- Text "Post" -->
+                                        <TextBlock Text="Post" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Button.BorderBrush" Value="Transparent"/>
+                                            <Setter Property="Button.Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </StackPanel>
                         </Border>
                         <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15">
