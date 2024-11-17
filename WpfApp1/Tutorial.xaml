@@ -7,7 +7,8 @@
       xmlns:Component="clr-namespace:WpfApp1.Component"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
-      Title="Tutorial">
+      Title="Tutorial"
+      xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf">
 
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
@@ -69,11 +70,13 @@
                                         <DataTemplate>
                                             <Component:PostCard 
                                             AdminName="{Binding AdminName}"
+                                            SenderIcon="{Binding Icon}"
                                             PostTitle="{Binding Title}" 
                                             PostDescription="{Binding Description}" 
-                                            SenderIcon="{Binding Icon}"
                                             PostImage="{Binding Bitmap}"
                                             DaySincePost="{Binding DaysSincePost}"
+                                            CommentsCount="{Binding CommentsCount}"
+                                            MouseLeftButtonDown="PostCard_LeftMouseButton"
                                             />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -81,6 +84,69 @@
                             </StackPanel>
                         </ScrollViewer>
                     </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,10,0,0" Name="Tutorial_article" Visibility="Hidden">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="680" PanningMode="VerticalOnly">
+                        <Grid Height="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <!-- Video section -->
+                                <RowDefinition Height="Auto" />
+                                <!-- Tutorial content -->
+                                <RowDefinition Height="*" />
+                                <!-- Comments section -->
+                            </Grid.RowDefinitions>
+
+                            <!-- Video Player -->
+                            <Grid Grid.Row="0" Height="480">
+                                <wpf:ChromiumWebBrowser Width="870" Height="480" Name="chromiumWebBrowser" />
+                            </Grid>
+
+                            <!-- Tutorial Article Content -->
+                            <ItemsControl Grid.Row="1" ItemsSource="{Binding TutorialArticle}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Component:TutorialArticle
+                    AdminName="{Binding AdminName}"
+                    SenderIcon="{Binding Icon}"
+                    PostTitle="{Binding Title}" 
+                    PostDescription="{Binding Article}" 
+                    DaySincePost="{Binding DaysSincePost}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- Comments Section -->
+                            <Grid Grid.Row="2" Margin="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="197*" />
+                                    <ColumnDefinition Width="673*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Comments" Foreground="Black" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" />
+
+                                <StackPanel Grid.ColumnSpan="2">
+                                    <Border CornerRadius="20" Padding="15" Margin="0,20,0,20">
+                                            <StackPanel x:Name="MessagesPanel" />
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+
+                    </ScrollViewer>
+                    <DockPanel Margin="0,0,0,0" VerticalAlignment="Bottom" Background="White">
+                        <TextBox x:Name="UserInputTextBox"
+                         Width="700" Height="40" HorizontalAlignment="Left" 
+                         Margin="0,0,10,0" VerticalAlignment="Center" FontSize="14" 
+                         Padding="10" BorderBrush="#D6D6D6" BorderThickness="1" 
+                         Background="White" />
+
+                                            <Button Content="Send" Width="100" Height="40" 
+                        HorizontalAlignment="Right" VerticalAlignment="Center" 
+                        Background="#00029F" Foreground="White" FontSize="14" 
+                        FontWeight="Bold" BorderThickness="0" 
+                        Click="SendButton_Click" />     
+                    </DockPanel>
                 </Grid>
             </StackPanel>
         </Grid>

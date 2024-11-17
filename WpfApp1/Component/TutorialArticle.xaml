@@ -1,12 +1,15 @@
-﻿<UserControl x:Class="WpfApp1.Component.PostCard"
+﻿<UserControl x:Class="WpfApp1.Component.TutorialArticle"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Component"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignWidth="910">
-    <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
+             d:DesignHeight="450" d:DesignWidth="910"
+             >
+
+    <Border Background="White" Width="900" Height="Auto" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#ffff" BorderThickness="3">
         <StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <Image Source="{Binding SenderIcon, RelativeSource={RelativeSource AncestorType=UserControl}, TargetNullValue='../icon/profile.png'}" Width="40" Height="40" Margin="0,0,10,0">
@@ -20,15 +23,10 @@
                 </StackPanel>
             </StackPanel>
 
-            <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!-- <Border Background="#E0E0E0" Height="Auto" CornerRadius="10" Margin="0,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid>
-                    <!-- Background Image -->
-                    <Image Source="{Binding PostImage, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               Stretch="UniformToFill"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"/>
-
-                    <!-- Wrapper Grid for Play Icon with Drop Shadow Effect -->
+                    Background Image -->
+            <!-- Wrapper Grid for Play Icon with Drop Shadow Effect
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Grid.Effect>
                             <DropShadowEffect Color="Black"
@@ -37,27 +35,24 @@
                                   Opacity="0.5"/>
                         </Grid.Effect>
 
-                        <!-- Play Icon -->
+                        <Play Icon
                         <iconPacks:PackIconMaterial Kind="PlayCircleOutline"
                                         Width="100" Height="Auto"
                                         Foreground="White"
-                                        Opacity="0.8"/>
+                                        Opacity="0.8"/> 
                     </Grid>
                 </Grid>
-            </Border>
+    </Border> -->
 
 
             <TextBlock Text="{Binding PostTitle, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="18" FontWeight="Bold" Foreground="#32324D" Margin="0, 0, 0, 5"/>
 
             <TextBlock Text="{Binding PostDescription, RelativeSource={RelativeSource AncestorType=UserControl}}" 
 FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
-            <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
-                <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
-                    <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
-                    <TextBlock Text="{Binding CommentsCount}" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
-                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0"/>
+                <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0"/>
                 <StackPanel Orientation="Horizontal"/>
             </StackPanel>
         </StackPanel>

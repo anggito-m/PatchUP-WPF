@@ -22,7 +22,11 @@
                 <Component:SearchBar />
 
                 <Grid Grid.Column="1" Margin="20">
-                    <StackPanel>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="197*"/>
+                        <ColumnDefinition Width="673*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.ColumnSpan="2">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                         </StackPanel>
 

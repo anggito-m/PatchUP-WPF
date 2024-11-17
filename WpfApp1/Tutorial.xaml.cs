@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,6 +50,28 @@ namespace WpfApp1
                 OnPropertyChanged(nameof(TutorialItems));
             }
         }
+        private ObservableCollection<TutorialItem> _tutorialArticle;
+        public ObservableCollection<TutorialItem> TutorialArticle
+        {
+            get => _tutorialArticle;
+            set
+            {
+                _tutorialArticle = value;
+                OnPropertyChanged(nameof(TutorialArticle));
+            }
+        }
+        private ObservableCollection<CommentItem> _commentItems;
+        public ObservableCollection<CommentItem> CommentItems
+        {
+            get => _commentItems;
+            set
+            {
+                _commentItems = value;
+                OnPropertyChanged(nameof(CommentItems));
+            }
+        }
+        //public TutorialItem TutorialArticle { get; set; }
+
         public ObservableCollection<CategoryItem> CategoryItems { get; set; } = new ObservableCollection<CategoryItem>();
         public Tutorial()
         {
@@ -56,6 +80,8 @@ namespace WpfApp1
             CategoryItems = product.getAllCategory();
             ProductItems = new ObservableCollection<ProductItem>();
             TutorialItems = new ObservableCollection<TutorialItem>();
+            TutorialArticle = new ObservableCollection<TutorialItem>();
+            CommentItems = new ObservableCollection<CommentItem>();
             DataContext = this;
         }
         private void Sidebar_NavigateToPage(object sender, string pageName)
@@ -123,6 +149,23 @@ namespace WpfApp1
             public BitmapImage Bitmap { get; set; }
             public string AdminName { get; set; }
             public string DaysSincePost { get; set; }
+            public string CommentsCount { get; set; }
+
+
+            //public TutorialItem() {
+            //    Id = 0;
+            //    Title = null;
+            //    VideoUrl = null;
+            //    Description = null;
+            //    Timestamp = DateTime.Now;
+            //    DaysSincePost = CountDays(Timestamp);
+            //    ProductId = 0;
+            //    AdminId = 0;
+            //    AdminName = null;
+            //    Article = null;
+            //    Icon = "../icon/profile.png";
+            //    Bitmap = null;
+            //}
             public TutorialItem(int id, string title, string videoUrl, string description, DateTime timestamp, int productid, int adminid, string article)
             {
                 Id = id;
@@ -137,7 +180,7 @@ namespace WpfApp1
                 Article = article;
                 Icon = "../icon/profile.png";
                 Bitmap = tutorial.LoadThumbnail(videoUrl);
-                
+                CommentsCount = tutorial.GetCommentCountAsync(id).ToString()+" Comments" ;
             }
             private string CountDays(DateTime timestamp)
             {
@@ -160,7 +203,26 @@ namespace WpfApp1
                 }
             }
         }
+        // Comment Items
+        public class CommentItem
+        {
+            public int Id { get; set; }
+            public string Content { get; set; }
+            public DateTime Timestamp { get; set; }
+            public int UserId { get; set; }
+            public int TutorialId { get; set; }
+            public string Username { get; set; }
 
+            public CommentItem(int id, string content, DateTime timestamp, int userid, int tutorialid)
+            {
+                Id = id;
+                Content = content;
+                Timestamp = timestamp;
+                UserId = userid;
+                TutorialId = tutorialid;
+                Username = null;
+            }
+        }
         private async void TutorialCard_GotMouseCapture(object sender, MouseButtonEventArgs e)
         {
             if (sender is TutorialCard tutorialCard && tutorialCard.DataContext is CategoryItem selectedCategory)
@@ -184,12 +246,98 @@ namespace WpfApp1
                 TutorialItems = await tutorial.GetTutorialsAsync(selectedProductId);
                 //MessageBox.Show($"Loaded {TutorialItems.Count} products");
                 //MessageBox.Show($"Loaded {TutorialItems} products");
-
                 Product_grid.Visibility = Visibility.Collapsed;
                 Tutorial_grid.Visibility = Visibility.Visible;
                 DataContext = this;
             }
            
+        }
+        
+        int globalproductid;
+        private async void PostCard_LeftMouseButton(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is PostCard postCard && postCard.DataContext is TutorialItem selectedProduct)
+            {
+                int selectedProductId = selectedProduct.Id;
+                globalproductid = selectedProductId;
+                // Hide the category grid and show the tutorial grid
+                //MessageBox.Show(selectedProductId.ToString());
+                //VideoPlayer.Navigate(selectedProduct.VideoUrl);
+                chromiumWebBrowser.Address = tutorial.ExtractEmbedUrl(selectedProduct.VideoUrl);
+                TutorialArticle = await tutorial.GetTutorialArticleAsync(selectedProductId);
+                // get tutorial comments from db
+                CommentItems = await tutorial.GetTutorialCommentsAsync(selectedProductId);
+                // Add chat buble based on commentitems counts
+                foreach (CommentItem comment in CommentItems)
+                {
+                    AddMessageToChat(comment.Content, comment.UserId);
+                }
+                Tutorial_grid.Visibility = Visibility.Collapsed;
+                Tutorial_article.Visibility = Visibility.Visible;
+                DataContext = this;
+            }
+        }
+        private async void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            string userMessage = UserInputTextBox.Text;
+            if (!string.IsNullOrWhiteSpace(userMessage))
+            {
+                // Display user's message
+                MessagesPanel.Children.Clear();
+                UserInputTextBox.Clear();
+                await tutorial.AddTutorialCommentAsync(globalproductid, user.Instance.Id, userMessage);
+
+                CommentItems = await tutorial.GetTutorialCommentsAsync(globalproductid);
+
+                // Add chat buble based on commentitems counts
+                foreach (CommentItem comment in CommentItems)
+                {
+                    AddMessageToChat(comment.Content, comment.UserId);
+                }
+
+                // Add chat buble based on commentitems counts
+
+                // Scroll to the latest message
+            }
+        }
+        private void AddMessageToChat(string message, int userID)
+        {
+            // Create a TextBlock for the username
+            TextBlock usernameText = new TextBlock
+            {
+                Text = Model.user.Instance.GetUsername(userID), // Set the username here
+                Foreground = Brushes.DarkBlue,
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(0, 0, 0, 5) // Add some space below the username
+            };
+
+            // Create a TextBlock for the message text
+            TextBlock messageText = new TextBlock
+            {
+                Text = message,
+                Foreground = Brushes.Black,
+                TextWrapping = TextWrapping.Wrap
+            };
+
+            // StackPanel to hold the username and message text
+            StackPanel messageStack = new StackPanel();
+            messageStack.Children.Add(usernameText); // Add username at the top
+            messageStack.Children.Add(messageText); // Add message text below
+
+            // Create the Border for the chat bubble
+            Border chatBubble = new Border
+            {
+                Background = Brushes.LightBlue,
+                CornerRadius = new CornerRadius(10),
+                Padding = new Thickness(10),
+                Margin = new Thickness(5),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Child = messageStack // Set StackPanel as the child of the Border
+            };
+
+            // Add the chat bubble to the MessagesPanel
+            MessagesPanel.Children.Add(chatBubble);
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,11 @@ using System.Windows.Shapes;
 namespace WpfApp1.Component
 {
     /// <summary>
-    /// Interaction logic for PostCard.xaml
+    /// Interaction logic for TutorialArticle.xaml
     /// </summary>
-    public partial class PostCard : UserControl
+    public partial class TutorialArticle : UserControl
     {
-        public PostCard()
+        public TutorialArticle()
         {
             InitializeComponent();
         }
@@ -32,7 +33,7 @@ namespace WpfApp1.Component
         //days ago
 
         public static readonly DependencyProperty AdminNameProperty =
-            DependencyProperty.Register("AdminName", typeof(string), typeof(PostCard), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("AdminName", typeof(string), typeof(TutorialArticle), new PropertyMetadata(string.Empty));
         public string DaySincePost
         {
             get => GetValue(DaySincePostProperty).ToString();
@@ -41,7 +42,7 @@ namespace WpfApp1.Component
         //days ago
 
         public static readonly DependencyProperty DaySincePostProperty =
-            DependencyProperty.Register("DaySincePost", typeof(string), typeof(PostCard), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("DaySincePost", typeof(string), typeof(TutorialArticle), new PropertyMetadata(string.Empty));
         public string PostTitle
         {
             get => (string)GetValue(TitleProperty);
@@ -49,7 +50,7 @@ namespace WpfApp1.Component
         }
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("PostTitle", typeof(string), typeof(PostCard), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("PostTitle", typeof(string), typeof(TutorialArticle), new PropertyMetadata(string.Empty));
 
         public string PostDescription
         {
@@ -58,7 +59,7 @@ namespace WpfApp1.Component
         }
 
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("PostDescription", typeof(string), typeof(PostCard), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("PostDescription", typeof(string), typeof(TutorialArticle), new PropertyMetadata(string.Empty));
 
         public ImageSource SenderIcon
         {
@@ -67,25 +68,6 @@ namespace WpfApp1.Component
         }
 
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("SenderIcon", typeof(ImageSource), typeof(PostCard), new PropertyMetadata(null));
-
-        public ImageSource PostImage
-        {
-            get => (ImageSource)GetValue(ImageProperty);
-            set => SetValue(ImageProperty, value);
-        }
-
-        public static readonly DependencyProperty ImageProperty =
-            DependencyProperty.Register("PostImage", typeof(BitmapImage), typeof(PostCard), new PropertyMetadata(null));
-
-        // binding comment count
-        public string CommentsCount
-        {
-            get => (string)GetValue(CommentCountProperty);
-            set => SetValue(CommentCountProperty, value);
-        }
-
-        public static readonly DependencyProperty CommentCountProperty =
-            DependencyProperty.Register("CommentsCount", typeof(string), typeof(PostCard), new PropertyMetadata(string.Empty));
+        DependencyProperty.Register("SenderIcon", typeof(ImageSource), typeof(TutorialArticle), new PropertyMetadata(null));
     }
 }

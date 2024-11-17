@@ -142,6 +142,93 @@ namespace WpfApp1.Model
             return items;
         }
 
+        public static async Task<ObservableCollection<TutorialItem>> GetTutorialArticleAsync(int tutorialId)
+        {
+            ObservableCollection<TutorialItem> items = new ObservableCollection<TutorialItem>();
+            string query = "SELECT * FROM tutorial WHERE tutorial_id = @tutorial_Id;";
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@tutorial_Id", tutorialId);
+                    NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+
+                        items.Add(new TutorialItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_description"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_article"].ToString()));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return items;
+        }
+        // Get Tutorial Comments
+        public static async Task<ObservableCollection<CommentItem>> GetTutorialCommentsAsync(int tutorialId)
+        {
+            ObservableCollection<CommentItem> items = new ObservableCollection<CommentItem>();
+            string query = "SELECT * FROM tutorial_comment WHERE tutorial_id = @tutorial_Id;";
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@tutorial_Id", tutorialId);
+                    NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+                        items.Add(new CommentItem(Convert.ToInt32(reader["comment_id"]), Convert.ToString(reader["comment_content"]), Convert.ToDateTime(reader["comment_timestamp"]), Convert.ToInt32(reader["user_id"]), Convert.ToInt32(reader["tutorial_id"])));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return items;
+        }
+        // Add Tutorial Comment
+        public static async Task AddTutorialCommentAsync(int tutorialId, int userId, string commentContent)
+        {
+            string query = "INSERT INTO tutorial_comment (comment_content, comment_timestamp, user_id, tutorial_id) VALUES (@comment_content, @comment_timestamp, @user_id, @tutorial_id);";
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@comment_content", commentContent);
+                    command.Parameters.AddWithValue("@comment_timestamp", DateTime.Now);
+                    command.Parameters.AddWithValue("@user_id", userId);
+                    command.Parameters.AddWithValue("@tutorial_id", tutorialId);
+                    await command.ExecuteNonQueryAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
 
         public static BitmapImage LoadThumbnail(string videoUrl)
     {
@@ -164,8 +251,42 @@ namespace WpfApp1.Model
             return bitmap;
         }
     }
+        // get count of tutorial_comment
+        public static int GetCommentCountAsync(int tutorialId)
+        {
+            int count = 0;
+            string query = "SELECT COUNT(*) FROM tutorial_comment WHERE tutorial_id = @tutorial_Id;";
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@tutorial_Id", tutorialId);
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return count;
+        }
 
-    private static string ExtractVideoId(string url)
+        // Extract Embed video url
+        public static string ExtractEmbedUrl(string url)
+        {
+           var videoID = ExtractVideoId(url);
+            var uri = $"https://www.youtube.com/embed/{videoID}";
+            return uri;
+        }
+
+        private static string ExtractVideoId(string url)
     {
         var uri = new Uri(url);
         var query = System.Web.HttpUtility.ParseQueryString(uri.Query);

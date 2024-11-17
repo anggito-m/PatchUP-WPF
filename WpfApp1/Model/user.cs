@@ -15,6 +15,7 @@ namespace WpfApp1.Model
         private static user _instance;
         public static user Instance => _instance ??= new user();
 
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
@@ -23,8 +24,9 @@ namespace WpfApp1.Model
         {
 
         }
-        public void SetUser(string username, string email, string name, string password)
+        public void SetUser(int id, string username, string email, string name, string password)
         {
+            Id = id;
             Username = username;
             Email = email;
             Name = name;
@@ -51,7 +53,7 @@ namespace WpfApp1.Model
                         // Sesuaikan dengan metode keamanan yang sesuai (contoh sederhana)
                         if (inputPassword == realPassword)
                         {
-                            user.Instance.SetUser(reader["username"].ToString(), reader["email"].ToString(), reader["name"].ToString(), reader["password"].ToString());
+                            user.Instance.SetUser(Convert.ToInt32(reader["user_id"]),reader["username"].ToString(), reader["email"].ToString(), reader["name"].ToString(), reader["password"].ToString());
                             return 1; // Login berhasil
                         }
                         else
@@ -104,6 +106,39 @@ namespace WpfApp1.Model
                 {
                     MessageBox.Show("Registrasi Gagal: " + ex.Message);
                     return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        // get username by userID
+        public string GetUsername(int userId)
+        {
+            string query = "SELECT username FROM \"user\" WHERE user_id = @User_Id";
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@User_Id", userId);
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        return reader["username"].ToString();
+                    }
+                    else
+                    {
+                        return "User not found";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return "Error";
                 }
                 finally
                 {
