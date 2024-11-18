@@ -26,7 +26,7 @@
 ---
 
 ## 🚀 Cara Memulai
-1. **Download Aplikasi PatchUP** dari [situs resmi kami](#).
+1. **Download Aplikasi PatchUP** dari [situs resmi kami](https://drive.google.com/drive/folders/1bVHPYgjHwBNP7POSJ-nfsHmbVLwLtfuR?usp=sharing).
 2. Buka aplikasi dan pilih kategori produk yang ingin diperbaiki.
 3. Ikuti instruksi langkah demi langkah yang disediakan.
 4. Selamat memperbaiki dan menghemat!
