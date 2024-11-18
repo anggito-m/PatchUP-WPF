@@ -32,7 +32,7 @@ namespace WpfApp1.Model
             Name = name;
             Password = password;
         }
-        string connectionString = Environment.GetEnvironmentVariable("connectionString");
+        static string connectionString = ConfigurationManager.ConnectionStrings["MyDatabaseConnection"].ConnectionString;
         public int Login(string username, string inputPassword)
         {
             string query = "SELECT * FROM \"user\" WHERE \"username\" = @username";

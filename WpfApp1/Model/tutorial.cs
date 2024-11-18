@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -109,8 +110,7 @@ namespace WpfApp1.Model
 
         //Metode abstrak yang akan diimplementasikan oleh kelas turunan
         public abstract void DisplayContent();
-
-        static string connectionString = Environment.GetEnvironmentVariable("connectionString");
+        static string connectionString = ConfigurationManager.ConnectionStrings["MyDatabaseConnection"].ConnectionString;
         public static async Task<ObservableCollection<TutorialItem>> GetTutorialsAsync(int productId)
         {
             ObservableCollection<TutorialItem> items = new ObservableCollection<TutorialItem>();
