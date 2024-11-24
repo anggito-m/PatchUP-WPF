@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Model;
 using static WpfApp1.Tutorial;
 
 namespace WpfApp1
@@ -58,11 +59,27 @@ namespace WpfApp1
         private void PostButton_Click(object sender, RoutedEventArgs e)
         {
             string postContent = WritePostTextBox.Text;
-            
+
             if (string.IsNullOrWhiteSpace(postContent) || postContent == "Write something...")
             {
                 MessageBox.Show("Please write something before posting.");
                 return;
+            }
+
+            int userId = user.Instance.Id; // Replace with the actual user ID if available
+
+            // Add the post to the database
+            bool isSuccess = Post.Instance.AddPost(postContent, userId);
+            if (isSuccess)
+            {
+                MessageBox.Show("Your post has been added successfully!");
+
+                // Clear the TextBox after successful posting
+                WritePostTextBox.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("An error occurred while adding your post.");
             }
         }
     }
