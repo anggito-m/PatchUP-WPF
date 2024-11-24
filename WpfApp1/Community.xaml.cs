@@ -49,5 +49,21 @@ namespace WpfApp1
                 OnPropertyChanged(nameof(TutorialItems));
             }
         }
+
+        private void WritePostTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void PostButton_Click(object sender, RoutedEventArgs e)
+        {
+            string postContent = WritePostTextBox.Text;
+            
+            if (string.IsNullOrWhiteSpace(postContent) || postContent == "Write something...")
+            {
+                MessageBox.Show("Please write something before posting.");
+                return;
+            }
+        }
     }
 }
