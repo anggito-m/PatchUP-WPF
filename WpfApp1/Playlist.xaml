@@ -1,4 +1,4 @@
-﻿<Page x:Class="WpfApp1.Page1"
+﻿<Page x:Class="WpfApp1.Playlist"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,10 +16,29 @@
         </Grid.ColumnDefinitions>
 
         <Component:Sidebar x:Name="sidebar"/>
-
         <Grid Grid.Column="1" Margin="20">
             <StackPanel>
-                <Component:SearchBar/>
+                <Component:SearchBar Margin="0, 20"/>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="680" PanningMode="VerticalOnly">
+                    <StackPanel>
+                        <ItemsControl ItemsSource="{Binding playlistItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Component:PostCard 
+                            AdminName="{Binding AdminName}"
+                            SenderIcon="{Binding Icon}"
+                            PostTitle="{Binding Title}" 
+                            PostDescription="{Binding Description}" 
+                            PostImage="{Binding Bitmap}"
+                            DaySincePost="{Binding DaysSincePost}"
+                            CommentsCount="{Binding CommentsCount}"
+                            MouseLeftButtonDown="PostCard_LeftMouseButton"
+                            />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
         </Grid>
     </Grid>

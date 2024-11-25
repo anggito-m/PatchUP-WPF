@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Component;
 using Npgsql;
+using System.Configuration;
 
 namespace WpfApp1
 {
@@ -23,7 +24,9 @@ namespace WpfApp1
     /// </summary>
     public partial class Help : Page
     {
-        private string connectionString = Environment.GetEnvironmentVariable("connectionString");
+        //private string connectionString = Environment.GetEnvironmentVariable("connectionString");
+        static string connectionString = ConfigurationManager.ConnectionStrings["MyDatabaseConnection"].ConnectionString;
+
         public Help()
         {
             InitializeComponent();

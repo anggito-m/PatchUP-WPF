@@ -36,9 +36,6 @@ namespace WpfApp1.Component
                 case "Home":
                     page = new Home();
                     break;
-                case "SavedPost":
-                    page = (new Tutorial());
-                    break;
                 case "Tutorial":
                     page = (new Tutorial());
                     break;
@@ -49,7 +46,7 @@ namespace WpfApp1.Component
                     page = (new Chatbot());
                     break;
                 case "Playlist":
-                    page = (new Home());
+                    page = (new Playlist());
                     break;
                 case "Help":
                     page = (new Help());

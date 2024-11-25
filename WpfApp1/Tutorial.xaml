@@ -99,11 +99,31 @@
 
                             <!-- Video Player -->
                             <Grid Grid.Row="0" Height="480">
-                                <wpf:ChromiumWebBrowser Width="870" Height="480" Name="chromiumWebBrowser" />
+                                <wpf:ChromiumWebBrowser Width="870" Height="480" Name="chromiumWebBrowser" /> 
                             </Grid>
-
+                            <Button Content="Add to playlist"
+Cursor="Hand"
+Width="200" 
+Height="45" 
+Margin="20"
+HorizontalAlignment="Left" 
+VerticalAlignment="Top"
+FontSize="14"
+FontWeight="Bold"
+Background="#5469D4" 
+Foreground="White"
+Click="AddToPlaylistButton_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="15" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                             <!-- Tutorial Article Content -->
                             <ItemsControl Grid.Row="1" ItemsSource="{Binding TutorialArticle}">
+                                
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Component:TutorialArticle

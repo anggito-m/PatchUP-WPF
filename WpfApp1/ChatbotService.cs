@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace WpfApp1
 
         public async Task<string> GetGeminiResponseAsync(string message)
         {
-            var apiKey = "";
+            var apiKey = ConfigurationManager.AppSettings["GeminiApiKey"]; ;
             var requestUrl = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={apiKey}";
 
             JObject json = new JObject();

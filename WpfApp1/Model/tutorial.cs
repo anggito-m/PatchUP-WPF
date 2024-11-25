@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using Npgsql;
 using static WpfApp1.Tutorial;
+using static WpfApp1.Playlist;
 
 namespace WpfApp1.Model
 {
@@ -110,7 +111,7 @@ namespace WpfApp1.Model
 
         //Metode abstrak yang akan diimplementasikan oleh kelas turunan
         public abstract void DisplayContent();
-        static string connectionString = ConfigurationManager.ConnectionStrings["MyDatabaseConnection"].ConnectionString;
+        public static string connectionString = ConfigurationManager.ConnectionStrings["MyDatabaseConnection"].ConnectionString;
         public static async Task<ObservableCollection<TutorialItem>> GetTutorialsAsync(int productId)
         {
             ObservableCollection<TutorialItem> items = new ObservableCollection<TutorialItem>();
@@ -128,6 +129,7 @@ namespace WpfApp1.Model
 
                         items.Add(new TutorialItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_description"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_article"].ToString()));
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -277,6 +279,106 @@ namespace WpfApp1.Model
             }
             return count;
         }
+        public async static Task<ObservableCollection<PlaylistItem>> GetMyTutorialsPlaylist(int userId)
+        {
+            ObservableCollection<PlaylistItem> tutorialItems = new ObservableCollection<PlaylistItem>();
+
+            // Query pertama: Ambil data dari tabel playlist berdasarkan user_id
+            string playlistQuery = "SELECT playlist_id, saved_timestamp, user_id, tutorial_id FROM playlist WHERE user_id = @user_id;";
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    NpgsqlCommand playlistCommand = new NpgsqlCommand(playlistQuery, connection);
+                    playlistCommand.Parameters.AddWithValue("@user_id", userId);
+                    NpgsqlDataReader playlistReader = await playlistCommand.ExecuteReaderAsync();
+
+                    List<int> tutorialIds = new List<int>();
+                    while (await playlistReader.ReadAsync())
+                    {
+                        int tutorialId = Convert.ToInt32(playlistReader["tutorial_id"]);
+                        tutorialIds.Add(tutorialId);
+                    }
+
+                    playlistReader.Close();
+
+                    // Query kedua: Ambil data dari tabel tutorial berdasarkan setiap tutorial_id yang ditemukan
+                    foreach (int tutorialId in tutorialIds)
+                    {
+                        string tutorialQuery = "SELECT * FROM tutorial WHERE tutorial_id = @tutorial_Id;";
+                        NpgsqlCommand tutorialCommand = new NpgsqlCommand(tutorialQuery, connection);
+                        tutorialCommand.Parameters.AddWithValue("@tutorial_Id", tutorialId);
+
+                        NpgsqlDataReader tutorialReader = await tutorialCommand.ExecuteReaderAsync();
+                        while (await tutorialReader.ReadAsync())
+                        {
+                            tutorialItems.Add(new PlaylistItem(Convert.ToInt32(tutorialReader["tutorial_id"]), tutorialReader["tutorial_title"].ToString(), tutorialReader["tutorial_video_url"].ToString(), tutorialReader["tutorial_description"].ToString(), Convert.ToDateTime(tutorialReader["tutorial_timestamp"]), Convert.ToInt32(tutorialReader["product_id"]), Convert.ToInt32(tutorialReader["admin_id"]), tutorialReader["tutorial_article"].ToString()));
+                        }
+
+                        tutorialReader.Close(); // Tutup reader setiap selesai membaca tutorial
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return tutorialItems;
+        }
+        public static bool AddTutorialToPlaylist(int userId, int tutorialId)
+        {
+            string insertQuery = "INSERT INTO playlist (user_id, tutorial_id, saved_timestamp) VALUES (@user_id, @tutorial_id, @saved_timestamp);";
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    NpgsqlCommand command = new NpgsqlCommand(insertQuery, connection);
+
+                    // Set parameter untuk user_id, tutorial_id, dan saved_timestamp
+                    command.Parameters.AddWithValue("@user_id", userId);
+                    command.Parameters.AddWithValue("@tutorial_id", tutorialId);
+                    command.Parameters.AddWithValue("@saved_timestamp", DateTime.Now);
+
+                    // Eksekusi query dan simpan hasilnya
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Periksa apakah ada baris yang terpengaruh
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Tutorial berhasil ditambahkan ke playlist!");
+                        return true; // Berhasil
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal menambahkan tutorial ke playlist.");
+                        return false; // Gagal
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+                    return false; // Gagal
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+
+
 
         // Extract Embed video url
         public static string ExtractEmbedUrl(string url)
@@ -292,6 +394,7 @@ namespace WpfApp1.Model
         var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
         return query["v"];
     }
+
 }
 
     public class VideoTutorial : tutorial

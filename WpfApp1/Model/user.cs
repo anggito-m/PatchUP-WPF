@@ -69,6 +69,7 @@ namespace WpfApp1.Model
 
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     MessageBox.Show(ex.Message);
                     return -2;
                 }
@@ -104,6 +105,7 @@ namespace WpfApp1.Model
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     MessageBox.Show("Registrasi Gagal: " + ex.Message);
                     return false;
                 }
@@ -137,6 +139,7 @@ namespace WpfApp1.Model
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     MessageBox.Show(ex.Message);
                     return "Error";
                 }
@@ -157,7 +160,7 @@ namespace WpfApp1.Model
 
         }
         // Create Method to get admin name given admin ID
-        string connectionString = Environment.GetEnvironmentVariable("connectionString");
+        static string connectionString = ConfigurationManager.ConnectionStrings["MyDatabaseConnection"].ConnectionString;
 
         public string GetAdminName(int adminId)
         {
@@ -182,6 +185,7 @@ namespace WpfApp1.Model
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     MessageBox.Show(ex.Message);
                     return "Error";
                 }

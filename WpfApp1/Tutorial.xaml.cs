@@ -339,5 +339,16 @@ namespace WpfApp1
             MessagesPanel.Children.Add(chatBubble);
 
         }
+        private void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            int userId = user.Instance.Id; 
+            int tutorialId = globalproductid;
+
+            bool success = tutorial.AddTutorialToPlaylist(userId, tutorialId);
+            if (!success)
+            {
+                MessageBox.Show("Penambahan tutorial ke playlist gagal.");
+            }
+        }
     }
 }

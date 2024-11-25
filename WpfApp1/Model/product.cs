@@ -108,6 +108,7 @@ namespace WpfApp1.Model
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     MessageBox.Show(ex.Message);
                 }
                 finally
