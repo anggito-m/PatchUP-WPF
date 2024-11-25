@@ -15,7 +15,7 @@ namespace WpfApp1.Model
     public class Post
     {
         private static Post _instance;
-        public static Post Instance => _instance ??= new post();
+        public static Post Instance => _instance ??= new Post();
 
         private Post() { }
 

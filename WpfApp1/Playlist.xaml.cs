@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CefSharp.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Component;
 using WpfApp1.Model;
 using static WpfApp1.Tutorial;
 
@@ -27,29 +29,140 @@ namespace WpfApp1
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        private ObservableCollection<PlaylistItem> _playlistItems;
-        public ObservableCollection<PlaylistItem> playlistItems
+        //private ObservableCollection<PlaylistItem> _playlistItems;
+        //public ObservableCollection<PlaylistItem> playlistItems
+        //{
+        //    get => _playlistItems;
+        //    set
+        //    {
+        //        _playlistItems = value;
+        //        OnPropertyChanged(nameof(playlistItems));
+        //    }
+        //}
+        private ObservableCollection<PlaylistItem> _tutorialArticle;
+        public ObservableCollection<PlaylistItem> TutorialArticles
         {
-            get => _playlistItems;
+            get => _tutorialArticle;
             set
             {
-                _playlistItems = value;
-                OnPropertyChanged(nameof(playlistItems));
+                _tutorialArticle = value;
+                OnPropertyChanged(nameof(TutorialArticles));
             }
         }
-        //public ObservableCollection<PlaylistItem> playlistItems { get; set; } = new ObservableCollection<PlaylistItem>();
+        private ObservableCollection<CommentItem> _commentItems;
+        public ObservableCollection<CommentItem> CommentItems
+        {
+            get => _commentItems;
+            set
+            {
+                _commentItems = value;
+                OnPropertyChanged(nameof(CommentItems));
+            }
+        }
+        public ObservableCollection<PlaylistItem> playlistItems { get; set; } = new ObservableCollection<PlaylistItem>();
         public Playlist()
         {
             InitializeComponent();
             sidebar.NavigateToPage += Sidebar_NavigateToPage;
-            playlistItems = await tutorial.GetMyTutorialsPlaylist(user.Instance.Id);
-            MessageBox.Show(playlistItems.Count.ToString());
+            playlistItems = tutorial.GetMyTutorialsPlaylist(user.Instance.Id);
+            TutorialArticles = new ObservableCollection<PlaylistItem>();
+            CommentItems = new ObservableCollection<CommentItem>();
+            DataContext = this;
+
         }
         private void Sidebar_NavigateToPage(object sender, string pageName)
         {
             Frame frame = new Frame();
             frame.Navigate(sidebar.Navigate(pageName));
             this.Content = frame;
+        }
+        int globalproductid;
+
+        private async void PostCard_LeftMouseButton(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is PostCard postCard && postCard.DataContext is PlaylistItem selectedProduct)
+            {
+                int selectedProductId = selectedProduct.Id;
+                globalproductid = selectedProductId;
+                // Hide the category grid and show the tutorial grid
+                //MessageBox.Show(selectedProductId.ToString());
+                //VideoPlayer.Navigate(selectedProduct.VideoUrl);
+                chromiumWebBrowser.Address = tutorial.ExtractEmbedUrl(selectedProduct.VideoUrl);
+                TutorialArticles = await tutorial.GetPlaylistArticleAsync(selectedProductId);
+                MessageBox.Show(TutorialArticles.Count.ToString());
+                // get tutorial comments from db
+                CommentItems = await tutorial.GetTutorialCommentsAsync(selectedProductId);
+                // Add chat buble based on commentitems counts
+                foreach (CommentItem comment in CommentItems)
+                {
+                    AddMessageToChat(comment.Content, comment.UserId);
+                }
+                Tutorial_grid.Visibility = Visibility.Hidden;
+                Tutorial_article.Visibility = Visibility.Visible;
+                DataContext = this;
+            }
+        }
+        private async void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            string userMessage = UserInputTextBox.Text;
+            if (!string.IsNullOrWhiteSpace(userMessage))
+            {
+                // Display user's message
+                MessagesPanel.Children.Clear();
+                UserInputTextBox.Clear();
+                await tutorial.AddTutorialCommentAsync(globalproductid, user.Instance.Id, userMessage);
+
+                CommentItems = await tutorial.GetTutorialCommentsAsync(globalproductid);
+
+                // Add chat buble based on commentitems counts
+                foreach (CommentItem comment in CommentItems)
+                {
+                    AddMessageToChat(comment.Content, comment.UserId);
+                }
+
+                // Add chat buble based on commentitems counts
+
+                // Scroll to the latest message
+            }
+        }
+        public void AddMessageToChat(string message, int userID)
+        {
+            // Create a TextBlock for the username
+            TextBlock usernameText = new TextBlock
+            {
+                Text = Model.user.Instance.GetUsername(userID), // Set the username here
+                Foreground = Brushes.DarkBlue,
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(0, 0, 0, 5) // Add some space below the username
+            };
+
+            // Create a TextBlock for the message text
+            TextBlock messageText = new TextBlock
+            {
+                Text = message,
+                Foreground = Brushes.Black,
+                TextWrapping = TextWrapping.Wrap
+            };
+
+            // StackPanel to hold the username and message text
+            StackPanel messageStack = new StackPanel();
+            messageStack.Children.Add(usernameText); // Add username at the top
+            messageStack.Children.Add(messageText); // Add message text below
+
+            // Create the Border for the chat bubble
+            Border chatBubble = new Border
+            {
+                Background = Brushes.LightBlue,
+                CornerRadius = new CornerRadius(10),
+                Padding = new Thickness(10),
+                Margin = new Thickness(5),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Child = messageStack // Set StackPanel as the child of the Border
+            };
+
+            // Add the chat bubble to the MessagesPanel
+            MessagesPanel.Children.Add(chatBubble);
+
         }
         public class PlaylistItem
         {
@@ -84,6 +197,22 @@ namespace WpfApp1
                 Bitmap = tutorial.LoadThumbnail(videoUrl);
                 CommentsCount = tutorial.GetCommentCountAsync(id).ToString() + " Comments";
             }
+            public PlaylistItem(TutorialItem tutorialItem)
+            {
+                Id = tutorialItem.Id;
+                Title = tutorialItem.Title;
+                VideoUrl = tutorialItem.VideoUrl;
+                Description = tutorialItem.Description;
+                Timestamp = tutorialItem.Timestamp;
+                DaysSincePost = CountDays(tutorialItem.Timestamp);
+                ProductId = tutorialItem.ProductId;
+                AdminId = tutorialItem.AdminId;
+                AdminName = admin.Instance.GetAdminName(AdminId);
+                Article = tutorialItem.Article;
+                Icon = "../icon/profile.png";
+                Bitmap = tutorial.LoadThumbnail(tutorialItem.VideoUrl);
+                CommentsCount = tutorial.GetCommentCountAsync(tutorialItem.Id).ToString() + " Comments";
+            }
             private string CountDays(DateTime timestamp)
             {
                 TimeSpan timeSincePost = DateTime.Now - timestamp;
@@ -105,5 +234,6 @@ namespace WpfApp1
                 }
             }
         }
+       
     }
 }

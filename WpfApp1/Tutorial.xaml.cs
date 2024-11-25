@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Component;
 using WpfApp1.Model;
+using static WpfApp1.Playlist;
 
 namespace WpfApp1
 {
@@ -182,6 +183,22 @@ namespace WpfApp1
                 Bitmap = tutorial.LoadThumbnail(videoUrl);
                 CommentsCount = tutorial.GetCommentCountAsync(id).ToString()+" Comments" ;
             }
+            public TutorialItem(PlaylistItem tutorialItem)
+            {
+                Id = tutorialItem.Id;
+                Title = tutorialItem.Title;
+                VideoUrl = tutorialItem.VideoUrl;
+                Description = tutorialItem.Description;
+                Timestamp = tutorialItem.Timestamp;
+                DaysSincePost = CountDays(tutorialItem.Timestamp);
+                ProductId = tutorialItem.ProductId;
+                AdminId = tutorialItem.AdminId;
+                AdminName = admin.Instance.GetAdminName(AdminId);
+                Article = tutorialItem.Article;
+                Icon = "../icon/profile.png";
+                Bitmap = tutorial.LoadThumbnail(tutorialItem.VideoUrl);
+                CommentsCount = tutorial.GetCommentCountAsync(tutorialItem.Id).ToString() + " Comments";
+            }
             private string CountDays(DateTime timestamp)
             {
                 TimeSpan timeSincePost = DateTime.Now - timestamp;
@@ -274,7 +291,7 @@ namespace WpfApp1
                 }
                 Tutorial_grid.Visibility = Visibility.Collapsed;
                 Tutorial_article.Visibility = Visibility.Visible;
-                DataContext = this;
+                //DataContext = this;
             }
         }
         private async void SendButton_Click(object sender, RoutedEventArgs e)
@@ -300,7 +317,7 @@ namespace WpfApp1
                 // Scroll to the latest message
             }
         }
-        private void AddMessageToChat(string message, int userID)
+        public void AddMessageToChat(string message, int userID)
         {
             // Create a TextBlock for the username
             TextBlock usernameText = new TextBlock

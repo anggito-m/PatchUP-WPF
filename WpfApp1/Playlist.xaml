@@ -7,7 +7,9 @@
       xmlns:Component="clr-namespace:WpfApp1.Component"
       mc:Ignorable="d" 
       d:DesignHeight="780" d:DesignWidth="1200"
-      Title="Playlist">
+      Title="Playlist"
+            xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf">
+
 
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
@@ -17,29 +19,98 @@
 
         <Component:Sidebar x:Name="sidebar"/>
         <Grid Grid.Column="1" Margin="20">
-            <StackPanel>
+            <StackPanel Margin="0,0,0,34">
                 <Component:SearchBar Margin="0, 20"/>
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="680" PanningMode="VerticalOnly">
+
+                <!-- Tutorial_article berada di belakang Tutorial_grid -->
+                <Grid Grid.Column="1" Margin="0,0,0,0" Name="Tutorial_article" Visibility="Collapsed" Panel.ZIndex="0">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="600" PanningMode="VerticalOnly" Margin="0,0,0,13">
+                        <Grid Height="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Video Player -->
+                            <Grid Grid.Row="0" Height="480">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="173*"/>
+                                    <ColumnDefinition Width="282*"/>
+                                </Grid.ColumnDefinitions>
+                                <wpf:ChromiumWebBrowser Width="870" Height="480" Name="chromiumWebBrowser" Grid.ColumnSpan="2" Margin="20,0,20,0" />
+                            </Grid>
+
+                            <!-- Tutorial Article Content -->
+                            <ItemsControl Grid.Row="1" ItemsSource="{Binding TutorialArticles}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Component:TutorialArticle
+                                    AdminName="{Binding AdminName}"
+                                    SenderIcon="{Binding Icon}"
+                                    PostTitle="{Binding Title}" 
+                                    PostDescription="{Binding Article}" 
+                                    DaySincePost="{Binding DaysSincePost}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- Comments Section -->
+                            <Grid Grid.Row="2" Margin="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="197*" />
+                                    <ColumnDefinition Width="673*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Comments" Foreground="Black" FontSize="24" FontWeight="Bold" Margin="0,0,0,10" />
+
+                                <StackPanel Grid.ColumnSpan="2">
+                                    <Border CornerRadius="20" Padding="15" Margin="0,20,0,20">
+                                        <StackPanel x:Name="MessagesPanel" />
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                    <DockPanel Margin="0,0,0,0" VerticalAlignment="Bottom" Background="White">
+                        <TextBox x:Name="UserInputTextBox"
+                         Width="700" Height="40" HorizontalAlignment="Left" 
+                         Margin="0,0,10,0" VerticalAlignment="Center" FontSize="14" 
+                         Padding="10" BorderBrush="#D6D6D6" BorderThickness="1" 
+                         Background="White" />
+                        <Button Content="Send" Width="100" Height="40" 
+                        HorizontalAlignment="Right" VerticalAlignment="Center" 
+                        Background="#00029F" Foreground="White" FontSize="14" 
+                        FontWeight="Bold" BorderThickness="0" Click="SendButton_Click"/>
+                    </DockPanel>
+                </Grid>
+
+                <Grid Grid.Column="1" Margin="0,0,0,0" Name="Tutorial_grid" Panel.ZIndex="1">
                     <StackPanel>
-                        <ItemsControl ItemsSource="{Binding playlistItems}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Component:PostCard 
-                            AdminName="{Binding AdminName}"
-                            SenderIcon="{Binding Icon}"
-                            PostTitle="{Binding Title}" 
-                            PostDescription="{Binding Description}" 
-                            PostImage="{Binding Bitmap}"
-                            DaySincePost="{Binding DaysSincePost}"
-                            CommentsCount="{Binding CommentsCount}"
-                            MouseLeftButtonDown="PostCard_LeftMouseButton"
-                            />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="644" PanningMode="VerticalOnly" >
+                            <StackPanel>
+                                <ItemsControl ItemsSource="{Binding playlistItems}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Component:PostCard 
+                                        AdminName="{Binding AdminName}"
+                                        SenderIcon="{Binding Icon}"
+                                        PostTitle="{Binding Title}" 
+                                        PostDescription="{Binding Description}" 
+                                        PostImage="{Binding Bitmap}"
+                                        DaySincePost="{Binding DaysSincePost}"
+                                        CommentsCount="{Binding CommentsCount}"
+                                        MouseLeftButtonDown="PostCard_LeftMouseButton"
+                                    />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ScrollViewer>
                     </StackPanel>
-                </ScrollViewer>
+                </Grid>
             </StackPanel>
         </Grid>
+
     </Grid>
 </Page>

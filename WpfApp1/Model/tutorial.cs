@@ -174,6 +174,37 @@ namespace WpfApp1.Model
             }
             return items;
         }
+        // Get Tutorial Article On Playlist
+        public static async Task<ObservableCollection<PlaylistItem>> GetPlaylistArticleAsync(int tutorialId)
+        {
+            ObservableCollection<PlaylistItem> items = new ObservableCollection<PlaylistItem>();
+            string query = "SELECT * FROM tutorial WHERE tutorial_id = @tutorial_Id;";
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    NpgsqlCommand command = new NpgsqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@tutorial_Id", tutorialId);
+                    NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+                    while (await reader.ReadAsync())
+                    {
+
+                        items.Add(new PlaylistItem(Convert.ToInt32(reader["tutorial_id"]), reader["tutorial_title"].ToString(), reader["tutorial_video_url"].ToString(), reader["tutorial_description"].ToString(), Convert.ToDateTime(reader["tutorial_timestamp"]), Convert.ToInt32(reader["product_id"]), Convert.ToInt32(reader["admin_id"]), reader["tutorial_article"].ToString()));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return items;
+        }
         // Get Tutorial Comments
         public static async Task<ObservableCollection<CommentItem>> GetTutorialCommentsAsync(int tutorialId)
         {
@@ -279,7 +310,7 @@ namespace WpfApp1.Model
             }
             return count;
         }
-        public async static Task<ObservableCollection<PlaylistItem>> GetMyTutorialsPlaylist(int userId)
+        public static ObservableCollection<PlaylistItem> GetMyTutorialsPlaylist(int userId)
         {
             ObservableCollection<PlaylistItem> tutorialItems = new ObservableCollection<PlaylistItem>();
 
@@ -290,13 +321,13 @@ namespace WpfApp1.Model
             {
                 try
                 {
-                    await connection.OpenAsync();
+                    connection.Open();
                     NpgsqlCommand playlistCommand = new NpgsqlCommand(playlistQuery, connection);
                     playlistCommand.Parameters.AddWithValue("@user_id", userId);
-                    NpgsqlDataReader playlistReader = await playlistCommand.ExecuteReaderAsync();
+                    NpgsqlDataReader playlistReader = playlistCommand.ExecuteReader();
 
                     List<int> tutorialIds = new List<int>();
-                    while (await playlistReader.ReadAsync())
+                    while (playlistReader.Read())
                     {
                         int tutorialId = Convert.ToInt32(playlistReader["tutorial_id"]);
                         tutorialIds.Add(tutorialId);
@@ -311,8 +342,8 @@ namespace WpfApp1.Model
                         NpgsqlCommand tutorialCommand = new NpgsqlCommand(tutorialQuery, connection);
                         tutorialCommand.Parameters.AddWithValue("@tutorial_Id", tutorialId);
 
-                        NpgsqlDataReader tutorialReader = await tutorialCommand.ExecuteReaderAsync();
-                        while (await tutorialReader.ReadAsync())
+                        NpgsqlDataReader tutorialReader = tutorialCommand.ExecuteReader();
+                        while (tutorialReader.Read())
                         {
                             tutorialItems.Add(new PlaylistItem(Convert.ToInt32(tutorialReader["tutorial_id"]), tutorialReader["tutorial_title"].ToString(), tutorialReader["tutorial_video_url"].ToString(), tutorialReader["tutorial_description"].ToString(), Convert.ToDateTime(tutorialReader["tutorial_timestamp"]), Convert.ToInt32(tutorialReader["product_id"]), Convert.ToInt32(tutorialReader["admin_id"]), tutorialReader["tutorial_article"].ToString()));
                         }
