@@ -82,5 +82,23 @@ namespace WpfApp1
                 MessageBox.Show("An error occurred while adding your post.");
             }
         }
+
+        private void WriteTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (WritePostTextBox.Text == "Write something...")
+            {
+                WritePostTextBox.Text = "";
+                WritePostTextBox.Foreground = System.Windows.Media.Brushes.Black;
+            }
+        }
+
+        private void WriteTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(WritePostTextBox.Text))
+            {
+                WritePostTextBox.Text = "Write something...";
+                WritePostTextBox.Foreground = System.Windows.Media.Brushes.Gray;
+            }
+        }
     }
 }
