@@ -40,6 +40,7 @@ Untuk informasi lebih lanjut tentang arsitektur aplikasi, silakan lihat:
 - [App.Config](https://drive.google.com/drive/folders/10ashPHKs8VSxMVzQ0NS0M9U9NMraIbPX) 
 - [Entity-Relationship Diagram (ERD)](https://drive.google.com/file/d/17BgSYJA9A16O7t-PhomMlEBmhd79nzNo/view?usp=sharing)
 - [Use Case Diagram](https://drive.google.com/file/d/1MdOTsvxg4inJdXNXpGSet4tVYFswubNA/view?usp=sharing)
+- [System Environment Diagram](https://drive.google.com/file/d/1Xdl35GoCs9bbwxEj76FSu-f0LJ2jF7R2/view?usp=sharing)
 
 ---
 
