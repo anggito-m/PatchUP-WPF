@@ -26,7 +26,7 @@
 ---
 
 ## 🚀 Cara Memulai
-1. **Download Aplikasi PatchUP** dari [situs resmi kami](#).
+1. **Download Aplikasi PatchUP** dari [situs resmi kami](https://drive.google.com/drive/folders/1bVHPYgjHwBNP7POSJ-nfsHmbVLwLtfuR?usp=sharing).
 2. Buka aplikasi dan pilih kategori produk yang ingin diperbaiki.
 3. Ikuti instruksi langkah demi langkah yang disediakan.
 4. Selamat memperbaiki dan menghemat!
@@ -37,6 +37,7 @@
 
 Untuk informasi lebih lanjut tentang arsitektur aplikasi, silakan lihat:
 
+- [App.Config](https://drive.google.com/drive/folders/10ashPHKs8VSxMVzQ0NS0M9U9NMraIbPX) 
 - [Entity-Relationship Diagram (ERD)](https://drive.google.com/file/d/17BgSYJA9A16O7t-PhomMlEBmhd79nzNo/view?usp=sharing)
 - [Use Case Diagram](./docs/use-case-diagram.png)
 

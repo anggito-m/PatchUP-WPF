@@ -52,7 +52,7 @@ namespace WpfApp1.Component
                     page = (new Help());
                     break;
                 case "LogOut":
-                    page = (new Chatbot());
+                    page = (new Login());
                     break;
                 case "Profile":
                     page = (new Profile());

@@ -8,8 +8,10 @@
              d:DesignWidth="910">
     <Border Background="White" Width="900" Padding="20" Margin="5,20,5,0" CornerRadius="15" BorderBrush="#D6E0EF" BorderThickness="3">
         <StackPanel>
+            <!-- Profile Section -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <Image Source="{Binding SenderIcon, RelativeSource={RelativeSource AncestorType=UserControl}, TargetNullValue='../icon/profile.png'}" Width="40" Height="40" Margin="0,0,10,0">
+                <Image Source="{Binding SenderIcon, RelativeSource={RelativeSource AncestorType=UserControl}, TargetNullValue='../icon/profile.png'}" 
+                       Width="40" Height="40" Margin="0,0,10,0">
                     <Image.Clip>
                         <EllipseGeometry RadiusX="20" RadiusY="20" Center="20,20"/>
                     </Image.Clip>
@@ -20,45 +22,45 @@
                 </StackPanel>
             </StackPanel>
 
+            <!-- Post Image with Play Icon -->
             <Border Background="#E0E0E0" Height="250" CornerRadius="10" Margin="0,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid>
                     <!-- Background Image -->
                     <Image Source="{Binding PostImage, RelativeSource={RelativeSource AncestorType=UserControl}}"
-               Stretch="UniformToFill"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"/>
+                           Stretch="UniformToFill"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
 
                     <!-- Wrapper Grid for Play Icon with Drop Shadow Effect -->
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Grid.Effect>
                             <DropShadowEffect Color="Black"
-                                  BlurRadius="10"
-                                  ShadowDepth="2"
-                                  Opacity="0.5"/>
+                                              BlurRadius="10"
+                                              ShadowDepth="2"
+                                              Opacity="0.5"/>
                         </Grid.Effect>
 
                         <!-- Play Icon -->
                         <iconPacks:PackIconMaterial Kind="PlayCircleOutline"
-                                        Width="100" Height="Auto"
-                                        Foreground="White"
-                                        Opacity="0.8"/>
+                                                    Width="100" Height="100"
+                                                    Foreground="White"
+                                                    Opacity="0.8"/>
                     </Grid>
                 </Grid>
             </Border>
 
-
+            <!-- Post Title and Description -->
             <TextBlock Text="{Binding PostTitle, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="18" FontWeight="Bold" Foreground="#32324D" Margin="0, 0, 0, 5"/>
-
             <TextBlock Text="{Binding PostDescription, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                       FontSize="14" Foreground="#444" TextWrapping="Wrap" Margin="0,0,0,10"/>
             <TextBlock Text="Read More" Foreground="#2D2BC8" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10"/>
 
+            <!-- Footer with Comments Count -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
                 <StackPanel Orientation="Horizontal" Margin="0, 0, 20, 0">
                     <Image Source="/icon/comment.png" Width="18" Height="18" Margin="0,0,5,0"/>
                     <TextBlock Text="{Binding CommentsCount}" FontSize="14" Foreground="#666" VerticalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal"/>
             </StackPanel>
         </StackPanel>
     </Border>
