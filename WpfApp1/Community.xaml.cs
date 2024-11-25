@@ -85,7 +85,7 @@ namespace WpfApp1
 
         private void WriteTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (WritePostTextBox.Text == "Search")
+            if (WritePostTextBox.Text == "Write something...")
             {
                 WritePostTextBox.Text = "";
                 WritePostTextBox.Foreground = System.Windows.Media.Brushes.Black;
@@ -96,7 +96,7 @@ namespace WpfApp1
         {
             if (string.IsNullOrWhiteSpace(WritePostTextBox.Text))
             {
-                WritePostTextBox.Text = "Search";
+                WritePostTextBox.Text = "Write something...";
                 WritePostTextBox.Foreground = System.Windows.Media.Brushes.Gray;
             }
         }
