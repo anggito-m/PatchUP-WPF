@@ -100,7 +100,7 @@ namespace WpfApp1
             }
         }
 
-        private void LoadProfile(string username)
+        public void LoadProfile(string username)
         {
             string query = @"
                 SELECT name, username, email, phone, bio, avatar

@@ -31,7 +31,7 @@
                         </StackPanel>
 
                         <Border Background="#F5F5F5" CornerRadius="20" Padding="15" Margin="0,20,0,80">
-                            <ScrollViewer x:Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto">
+                            <ScrollViewer x:Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto" Height="400" PanningMode="VerticalOnly">
                                 <StackPanel x:Name="MessagesPanel" />
                             </ScrollViewer>
                         </Border>

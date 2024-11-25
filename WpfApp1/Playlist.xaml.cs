@@ -191,7 +191,7 @@ namespace WpfApp1
                 DaysSincePost = CountDays(timestamp);
                 ProductId = productid;
                 AdminId = adminid;
-                AdminName = admin.Instance.GetAdminName(AdminId);
+                AdminName = admin.Instance.GetUsername(AdminId);
                 Article = article;
                 Icon = "../icon/profile.png";
                 Bitmap = tutorial.LoadThumbnail(videoUrl);
@@ -207,7 +207,7 @@ namespace WpfApp1
                 DaysSincePost = CountDays(tutorialItem.Timestamp);
                 ProductId = tutorialItem.ProductId;
                 AdminId = tutorialItem.AdminId;
-                AdminName = admin.Instance.GetAdminName(AdminId);
+                AdminName = admin.Instance.GetUsername(AdminId);
                 Article = tutorialItem.Article;
                 Icon = "../icon/profile.png";
                 Bitmap = tutorial.LoadThumbnail(tutorialItem.VideoUrl);

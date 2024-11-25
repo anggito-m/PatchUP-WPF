@@ -90,6 +90,8 @@
                         <Grid Height="Auto">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
+
+                                <RowDefinition Height="Auto" />
                                 <!-- Video section -->
                                 <RowDefinition Height="Auto" />
                                 <!-- Tutorial content -->
@@ -97,11 +99,8 @@
                                 <!-- Comments section -->
                             </Grid.RowDefinitions>
 
-                            <!-- Video Player -->
-                            <Grid Grid.Row="0" Height="480">
-                                <wpf:ChromiumWebBrowser Width="870" Height="480" Name="chromiumWebBrowser" /> 
-                            </Grid>
-                            <Button Content="Add to playlist"
+
+                            <Button Grid.Row="0" Content="Add to playlist"
 Cursor="Hand"
 Width="200" 
 Height="45" 
@@ -113,7 +112,7 @@ FontWeight="Bold"
 Background="#5469D4" 
 Foreground="White"
 Click="AddToPlaylistButton_Click">
-                                <Button.Template>
+                                <Button.Template >
                                     <ControlTemplate TargetType="Button">
                                         <Border Background="{TemplateBinding Background}" CornerRadius="15" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -121,8 +120,12 @@ Click="AddToPlaylistButton_Click">
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
+                            <!-- Video Player -->
+                            <Grid Grid.Row="1" Height="480">
+                                <wpf:ChromiumWebBrowser Width="870" Height="480" Name="chromiumWebBrowser" />
+                            </Grid>
                             <!-- Tutorial Article Content -->
-                            <ItemsControl Grid.Row="1" ItemsSource="{Binding TutorialArticle}">
+                            <ItemsControl Grid.Row="2" ItemsSource="{Binding TutorialArticle}">
                                 
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -137,7 +140,7 @@ Click="AddToPlaylistButton_Click">
                             </ItemsControl>
 
                             <!-- Comments Section -->
-                            <Grid Grid.Row="2" Margin="20">
+                            <Grid Grid.Row="3" Margin="20">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="197*" />
                                     <ColumnDefinition Width="673*" />

@@ -23,6 +23,7 @@
     <None Remove="icon\image.png" />
     <None Remove="icon\light.png" />
     <None Remove="icon\like.png" />
+    <None Remove="icon\LogoPatchUP.png" />
     <None Remove="icon\logout.png" />
     <None Remove="icon\PatchUP.ico" />
     <None Remove="icon\playlist.png" />
@@ -57,6 +58,9 @@
     <Resource Include="icon\home.png" />
     <Resource Include="icon\image.png" />
     <Resource Include="icon\light.png" />
+    <Resource Include="icon\LogoPatchUP.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="icon\logout.png" />
     <Resource Include="icon\PatchUP.ico" />
     <Resource Include="icon\playlist.png" />

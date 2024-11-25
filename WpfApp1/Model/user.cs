@@ -116,7 +116,7 @@ namespace WpfApp1.Model
             }
         }
         // get username by userID
-        public string GetUsername(int userId)
+        public virtual string GetUsername(int userId)
         {
             string query = "SELECT username FROM \"user\" WHERE user_id = @User_Id";
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
@@ -162,7 +162,7 @@ namespace WpfApp1.Model
         // Create Method to get admin name given admin ID
         static string connectionString = ConfigurationManager.ConnectionStrings["MyDatabaseConnection"].ConnectionString;
 
-        public string GetAdminName(int adminId)
+        public override string GetUsername(int adminId)
         {
             string query = "SELECT name FROM \"ADMIN\" WHERE admin_id = @Admin_Id";
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
