@@ -9,7 +9,7 @@
     <Border Background="#00029F" Width="250" CornerRadius="0,40,40,0" HorizontalAlignment="Left">
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top" Margin="10">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
                     <!-- Image -->
                     <Image x:Name="ProfileImage" Source="/icon/LogoPatchUP.png" Width="40" Height="40" Stretch="UniformToFill">
                         <Image.Clip>

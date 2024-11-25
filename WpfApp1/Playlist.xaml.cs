@@ -89,7 +89,6 @@ namespace WpfApp1
                 //VideoPlayer.Navigate(selectedProduct.VideoUrl);
                 chromiumWebBrowser.Address = tutorial.ExtractEmbedUrl(selectedProduct.VideoUrl);
                 TutorialArticles = await tutorial.GetPlaylistArticleAsync(selectedProductId);
-                MessageBox.Show(TutorialArticles.Count.ToString());
                 // get tutorial comments from db
                 CommentItems = await tutorial.GetTutorialCommentsAsync(selectedProductId);
                 // Add chat buble based on commentitems counts

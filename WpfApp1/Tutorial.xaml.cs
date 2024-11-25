@@ -27,7 +27,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Tutorial : Page, INotifyPropertyChanged
     {
-                public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
@@ -146,7 +146,7 @@ namespace WpfApp1
             public int ProductId { get; set; }
             public int AdminId { get; set; }
             public string Article { get; set; }
-            public string Icon { get; set; }    
+            public string Icon { get; set; }
             public BitmapImage Bitmap { get; set; }
             public string AdminName { get; set; }
             public string DaysSincePost { get; set; }
@@ -181,7 +181,7 @@ namespace WpfApp1
                 Article = article;
                 Icon = "../icon/profile.png";
                 Bitmap = tutorial.LoadThumbnail(videoUrl);
-                CommentsCount = tutorial.GetCommentCountAsync(id).ToString()+" Comments" ;
+                CommentsCount = tutorial.GetCommentCountAsync(id).ToString() + " Comments";
             }
             public TutorialItem(PlaylistItem tutorialItem)
             {
@@ -204,9 +204,9 @@ namespace WpfApp1
                 TimeSpan timeSincePost = DateTime.Now - timestamp;
                 if (timeSincePost.Days == 0 && timeSincePost.Hours != 0)
                 {
-                    return timeSincePost.Hours.ToString()+ " hours ago";
+                    return timeSincePost.Hours.ToString() + " hours ago";
                 }
-                else if (timeSincePost.Days == 0 && timeSincePost.Hours == 0 && timeSincePost.Minutes != 0 )
+                else if (timeSincePost.Days == 0 && timeSincePost.Hours == 0 && timeSincePost.Minutes != 0)
                 {
                     return timeSincePost.Minutes.ToString() + " minutes ago";
                 }
@@ -267,9 +267,9 @@ namespace WpfApp1
                 Tutorial_grid.Visibility = Visibility.Visible;
                 DataContext = this;
             }
-           
+
         }
-        
+
         int globalproductid;
         private async void PostCard_LeftMouseButton(object sender, MouseButtonEventArgs e)
         {
@@ -358,14 +358,16 @@ namespace WpfApp1
         }
         private void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
         {
-            int userId = user.Instance.Id; 
+            int userId = user.Instance.Id;
             int tutorialId = globalproductid;
 
-            bool success = tutorial.AddTutorialToPlaylist(userId, tutorialId);
-            if (!success)
-            {
-                MessageBox.Show("Penambahan tutorial ke playlist gagal.");
-            }
+                bool success = tutorial.AddTutorialToPlaylist(userId, tutorialId);
+                if (!success)
+                {
+                    MessageBox.Show("Penambahan tutorial ke playlist gagal.");
+                }
+           
+            
         }
     }
 }

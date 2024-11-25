@@ -87,7 +87,7 @@
 
                 <Grid Grid.Column="1" Margin="0,0,0,0" Name="Tutorial_grid" Panel.ZIndex="1">
                     <StackPanel>
-                        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="644" PanningMode="VerticalOnly" >
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Height="640" PanningMode="VerticalOnly" >
                             <StackPanel>
                                 <ItemsControl ItemsSource="{Binding playlistItems}">
                                     <ItemsControl.ItemTemplate>
