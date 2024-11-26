@@ -15,13 +15,16 @@
 
 - **Ketua Kelompok**:  
   Muhammad Rafli Ramadani  
-  NIM: 22/497787/TK/54571  
+  NIM: 22/497787/TK/54571
+  Pengerjaan : Menu Community & Logo
 
 - **Anggota Tim**:  
   1. Anggito Muhammad Amien  
-     NIM: 22/498140/TK/54627  
+     NIM: 22/498140/TK/54627 
+     Pengerjaan : Menu Home, Tutorial, Playlist
   2. Adji Dharmawan Indrianto  
      NIM: 22/499366/TK/54743  
+     Pengerjaan : Menu Profile, Chatbot, dan Slicing UI
 
 ---
 
