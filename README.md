@@ -16,7 +16,6 @@
 - **Ketua Kelompok**:  
   Muhammad Rafli Ramadani  
   NIM: 22/497787/TK/54571
-
   Pengerjaan : Menu Community & Logo
 
 - **Anggota Tim**:  
